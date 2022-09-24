@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
@@ -7,38 +9,87 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" text="Simulation" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SimulationController">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" text="Simulation" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="plop.SimulationController">
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
             <children>
-                <SplitPane dividerPositions="0.8692170818505338" orientation="VERTICAL" prefHeight="676.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <SplitPane dividerPositions="0.8075980392156863" orientation="VERTICAL" prefHeight="676.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                             <children>
-                                <Slider fx:id="visuProies" blockIncrement="1.0" layoutX="14.0" layoutY="14.0" prefHeight="14.0" prefWidth="121.0" value="50.0" AnchorPane.leftAnchor="10.0" />
-                                <Slider fx:id="cohePreda" blockIncrement="1.0" layoutX="534.0" layoutY="14.0" prefHeight="14.0" prefWidth="121.0" value="50.0" AnchorPane.rightAnchor="10.0" />
-                                <Slider fx:id="visuPreda" blockIncrement="1.0" layoutX="289.0" layoutY="14.0" prefHeight="14.0" prefWidth="121.0" value="50.0" AnchorPane.rightAnchor="150.0" />
-                                <Slider fx:id="coheProies" blockIncrement="1.0" layoutX="158.0" layoutY="14.0" prefHeight="14.0" prefWidth="121.0" value="50.0" AnchorPane.leftAnchor="150.0" />
-                                <Slider fx:id="aliProies" blockIncrement="1.0" layoutX="14.0" layoutY="42.0" prefHeight="14.0" prefWidth="121.0" value="50.0" AnchorPane.leftAnchor="10.0" />
-                                <Slider fx:id="sepaPreda" blockIncrement="1.0" layoutX="534.0" layoutY="42.0" prefHeight="14.0" prefWidth="121.0" value="50.0" AnchorPane.rightAnchor="10.0" />
-                                <Slider fx:id="aliPreda" blockIncrement="1.0" layoutX="289.0" layoutY="42.0" prefHeight="14.0" prefWidth="121.0" value="50.0" AnchorPane.rightAnchor="150.0" />
-                                <Slider fx:id="sepaProies" blockIncrement="1.0" layoutX="158.0" layoutY="42.0" prefHeight="14.0" prefWidth="121.0" value="50.0" AnchorPane.leftAnchor="150.0" />
-                                <Separator layoutX="347.0" layoutY="-58.0" orientation="VERTICAL" prefHeight="200.0" />
-                                <Text layoutX="305.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proies" />
-                                <Text layoutX="353.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prédateurs" />
-                                <Slider fx:id="vitesseProies" blockIncrement="1.0" layoutX="89.0" layoutY="62.0" prefHeight="14.0" prefWidth="121.0" value="50.0" />
-                                <Slider fx:id="vitessePreda" blockIncrement="1.0" layoutX="488.0" layoutY="62.0" prefHeight="14.0" prefWidth="121.0" value="50.0" />
-                                <Text layoutX="45.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vitesse" />
-                                <Text layoutX="443.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vitesse" />
-                                <Text layoutX="14.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Portée visuelle" />
-                                <Text layoutX="428.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Portée visuelle" />
-                                <Text layoutX="150.0" layoutY="11.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cohérence" />
-                                <Text layoutX="568.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cohérence" />
-                                <Text layoutX="14.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alignement" />
-                                <Text layoutX="428.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Alignement" />
-                                <Text layoutX="150.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Séparation" />
-                                <Text layoutX="568.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Séparation" />
+                        <AnchorPane layoutX="-11.0" layoutY="-2.0" prefHeight="107.0" prefWidth="310.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Proies" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="20.0" />
+                              <ButtonBar AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <buttons>
+                                            <Slider fx:id="coheProies" blockIncrement="1.0" prefHeight="14.0" prefWidth="121.0" value="50.0" />
+                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cohérence" />
+                                 </buttons>
+                              </ButtonBar>
+                              <ButtonBar AnchorPane.topAnchor="60.0">
+                                 <buttons>
+                                            <Slider fx:id="visuProies" blockIncrement="1.0" prefHeight="14.0" prefWidth="121.0" value="50.0" />
+                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Portée visuelle" />
+                                 </buttons>
+                              </ButtonBar>
+                              <ButtonBar AnchorPane.topAnchor="40.0">
+                                 <buttons>
+                                            <Slider fx:id="aliProies" blockIncrement="1.0" prefHeight="14.0" prefWidth="121.0" value="50.0" />
+                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alignement" />
+                                 </buttons>
+                              </ButtonBar>
+                              <ButtonBar AnchorPane.topAnchor="20.0">
+                                 <buttons>
+                                            <Slider fx:id="sepaProies" blockIncrement="1.0" prefHeight="14.0" prefWidth="121.0" value="50.0" />
+                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Séparation" />
+                                 </buttons>
+                              </ButtonBar>
+                              <ButtonBar AnchorPane.topAnchor="80.0">
+                                 <buttons>
+                                            <Slider fx:id="vitesseProies" blockIncrement="1.0" prefHeight="14.0" prefWidth="121.0" value="50.0" />
+                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vitesse" />
+                                 </buttons>
+                              </ButtonBar>
+                           </children>
+                        </AnchorPane>
+                                <Separator layoutX="347.0" layoutY="-58.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0" />
+                        <AnchorPane layoutX="-1.0" layoutY="8.0" prefHeight="107.0" prefWidth="310.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prédateurs" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="20.0" />
+                              <ButtonBar AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <buttons>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cohérence" />
+                                    <Slider fx:id="cohePreda" blockIncrement="1.0" prefHeight="14.0" prefWidth="121.0" value="50.0" />
+                                 </buttons>
+                              </ButtonBar>
+                              <ButtonBar AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+                                 <buttons>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Portée visuelle" />
+                                    <Slider fx:id="visuPreda" blockIncrement="1.0" prefHeight="14.0" prefWidth="121.0" value="50.0" />
+                                 </buttons>
+                              </ButtonBar>
+                              <ButtonBar AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                 <buttons>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alignement" />
+                                    <Slider fx:id="aliPreda" blockIncrement="1.0" prefHeight="14.0" prefWidth="121.0" value="50.0" />
+                                 </buttons>
+                              </ButtonBar>
+                              <ButtonBar AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+                                 <buttons>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Séparation" />
+                                    <Slider fx:id="sepaPreda" blockIncrement="1.0" prefHeight="14.0" prefWidth="121.0" value="50.0" />
+                                 </buttons>
+                              </ButtonBar>
+                              <ButtonBar AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+                                 <buttons>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vitesse" />
+                                    <Slider fx:id="vitessePreda" blockIncrement="1.0" prefHeight="14.0" prefWidth="121.0" value="50.0" />
+                                 </buttons>
+                              </ButtonBar>
+                           </children>
+                        </AnchorPane>
+                        <Button layoutX="319.0" layoutY="67.0" mnemonicParsing="false" text="Start" AnchorPane.bottomAnchor="15.0" />
                             </children>
                         </AnchorPane>
                     </items>
