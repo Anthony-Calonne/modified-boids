@@ -7,6 +7,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.effect.Light;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
@@ -28,21 +30,58 @@ public class SimulationController implements Initializable {
     @FXML private Button start;
     @FXML public AnchorPane canvaPane;
     GraphicsContext gc;
-    private void drawLines(GraphicsContext gc){
+
+    double mouseX;
+    double mouseY;
+    double lastMouseY = mouseY;
+    double lastMouseX = mouseX;
+    double previousLastMouseY = lastMouseY;
+    double previousLastMouseX = lastMouseX;
+
+    private void drawBoids(GraphicsContext gc){
         gc.beginPath();
+        gc.setFill(Color.rgb(255,255,255));
         int width = (int) canvaPane.getWidth()-1;
         int height = (int) canvaPane.getHeight()-1;
-        gc.moveTo(0, 0);
-        gc.lineTo(0, height);
-        gc.lineTo(width, 0);
-        gc.lineTo(width, height);
-        gc.stroke();
-    }
+
+        canvaPane.addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
+            double previousLastMouseY = lastMouseY;
+            double previousLastMouseX = lastMouseX;
+
+            double lastMouseY = mouseY;
+            double lastMouseX = mouseX;
+            mouseX = e.getSceneX();
+            mouseY = e.getSceneY();
+            gc.setStroke(Color.rgb(00,00,00));
+            gc.strokeRect(mouseX,mouseY,1,1);
+            gc.setStroke(Color.rgb(244,244,244));
+            gc.fillRect(lastMouseX,lastMouseY,1,1);
+            gc.strokeRect(lastMouseX,lastMouseY,5,5);
+            gc.fillRect(previousLastMouseX,previousLastMouseY,10,10);
+            gc.strokeRect(previousLastMouseX,previousLastMouseY,15,15);
+        });
+        }
+
+
+
     public void startSimulation(){
-        drawLines(gc);
+        Stockage.windowHeight=canvaPane.getHeight();
+        Stockage.windoWidth=canvaPane.getWidth();
+        InitializeBoids.Initialize(Stockage.nombreProies,Stockage.nombrePredateurs);
+        drawInitiation(gc);
+        drawBoids(gc);
     }
 
-
+    private void drawInitiation(GraphicsContext gc){
+        gc.setStroke(Color.rgb(100,200,100));
+        for (int i = 0;i<Stockage.nombreProies;i++ ){
+            gc.strokeRect(Stockage.proies.get(i).getX(),Stockage.proies.get(i).getY(),2,2);
+        }
+        gc.setStroke(Color.rgb(250,50,50));
+        for (int i = 0;i<Stockage.nombrePredateurs;i++ ){
+            gc.strokeRect(Stockage.predateurs.get(i).getX(),Stockage.predateurs.get(i).getY(),2,2);
+        }
+    }
 
 
 

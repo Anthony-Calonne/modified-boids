@@ -33,7 +33,9 @@ public class OuvertureController {
         String Predateurs= nbPredateurs.getText();
         try {
             nombreProies = Integer.parseInt(Proies);
+            Stockage.nombreProies = nombreProies;
             nombrePredateurs= Integer.parseInt(Predateurs);
+            Stockage.nombrePredateurs = nombrePredateurs;
         } catch (Exception f){
             textError.setText("Veuillez entrer des nombres entre 0 et 120");
             textError.setText("aa" + nombrePredateurs);
@@ -56,6 +58,7 @@ public void switchToSceneSimulation(){
             } catch (IOException exception) {
                 exception.printStackTrace();
             }
+
 }
 
 
