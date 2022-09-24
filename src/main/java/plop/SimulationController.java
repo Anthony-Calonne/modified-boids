@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
+import java.util.TimerTask;
 
 public class SimulationController implements Initializable {
 
@@ -44,10 +45,29 @@ public class SimulationController implements Initializable {
 
         for (int i=0; i<Stockage.nombreProies;i++){
             Proie temp = Stockage.proies.get(i);
+            double lateX = temp.getPreviousX();
+            double lateY= temp.getPreviousY();
             double x = temp.getX();
             double y = temp.getY();
             gc.setStroke(Color.rgb(100,200,100));
             gc.strokeRect(x,y,2,2);
+            gc.setStroke(Color.rgb(244,244,244));
+            gc.setFill(Color.rgb(244,244,244));
+            gc.strokeRect(lateX,lateY,2,2);
+
+        }
+        for (int i=0; i<Stockage.nombrePredateurs;i++){
+            Predateur temp = Stockage.predateurs.get(i);
+            double lateX = temp.getPreviousX();
+            double lateY= temp.getPreviousY();
+            double x = temp.getX();
+            double y = temp.getY();
+            gc.setStroke(Color.rgb(250,50,50));
+            gc.strokeRect(x,y,2,2);
+            gc.setStroke(Color.rgb(244,244,244));
+            gc.setFill(Color.rgb(244,244,244));
+            gc.strokeRect(lateX,lateY,2,2);
+
         }
         /*canvaPane.addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
             double previousLastMouseY = lastMouseY;
@@ -70,13 +90,24 @@ public class SimulationController implements Initializable {
 
 
     public void startSimulation() throws InterruptedException {
-        Stockage.windowHeight=canvaPane.getHeight();
-        Stockage.windoWidth=canvaPane.getWidth();
-        InitializeBoids.Initialize(Stockage.nombreProies,Stockage.nombrePredateurs);
+        Stockage.windowHeight = canvaPane.getHeight();
+        Stockage.windoWidth = canvaPane.getWidth();
+        InitializeBoids.Initialize(Stockage.nombreProies, Stockage.nombrePredateurs);
         drawInitiation(gc);
         drawBoids(gc);
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                UpdateBoids.updateProies();
+                drawBoids(gc);
+            }
+        };
+        timer.scheduleAtFixedRate(task,100,100);
+        }
 
-    }
+
+
 
     private void drawInitiation(GraphicsContext gc){
         gc.setStroke(Color.rgb(100,200,100));
