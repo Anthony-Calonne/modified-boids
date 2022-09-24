@@ -13,4 +13,8 @@ public class Stockage {
     static double windoWidth;
     static ArrayList<Proie> proies = new ArrayList<>();
     static ArrayList<Predateur> predateurs = new ArrayList<>();
+    static int vitesseProies = 1;
+    static int vitessePredateurs;
+    static GraphicsContext gc;
+
 }

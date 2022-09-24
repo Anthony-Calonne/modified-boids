@@ -1,9 +1,33 @@
 package plop;
 
+import java.util.Vector;
+
 public class Proie {
     public int rank;
     public double x;
     public double y;
+    public double previousX;
+    public double previousY;
+
+    public double xVise;
+
+    public double getxVise() {
+        return xVise;
+    }
+
+    public void setxVise(double xVise) {
+        this.xVise = xVise;
+    }
+
+    public double getyVise() {
+        return yVise;
+    }
+
+    public void setyVise(double yVise) {
+        this.yVise = yVise;
+    }
+
+    public double yVise;
 
     public int getRank() {
         return rank;
@@ -45,8 +69,7 @@ public class Proie {
         this.previousY = previousY;
     }
 
-    public double previousX;
-    public double previousY;
+
 
 
 }

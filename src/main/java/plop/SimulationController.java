@@ -1,19 +1,17 @@
 package plop;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import javafx.scene.effect.Light;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
 
 public class SimulationController implements Initializable {
 
@@ -28,7 +26,7 @@ public class SimulationController implements Initializable {
     @FXML private Slider vitessePreda;
     @FXML private Slider vitesseProies;
     @FXML private Button start;
-    @FXML public AnchorPane canvaPane;
+    @FXML public  AnchorPane canvaPane;
     GraphicsContext gc;
 
     double mouseX;
@@ -38,13 +36,20 @@ public class SimulationController implements Initializable {
     double previousLastMouseY = lastMouseY;
     double previousLastMouseX = lastMouseX;
 
-    private void drawBoids(GraphicsContext gc){
+    void drawBoids(GraphicsContext gc){
         gc.beginPath();
         gc.setFill(Color.rgb(255,255,255));
         int width = (int) canvaPane.getWidth()-1;
         int height = (int) canvaPane.getHeight()-1;
 
-        canvaPane.addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
+        for (int i=0; i<Stockage.nombreProies;i++){
+            Proie temp = Stockage.proies.get(i);
+            double x = temp.getX();
+            double y = temp.getY();
+            gc.setStroke(Color.rgb(100,200,100));
+            gc.strokeRect(x,y,2,2);
+        }
+        /*canvaPane.addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
             double previousLastMouseY = lastMouseY;
             double previousLastMouseX = lastMouseX;
 
@@ -59,17 +64,18 @@ public class SimulationController implements Initializable {
             gc.strokeRect(lastMouseX,lastMouseY,5,5);
             gc.fillRect(previousLastMouseX,previousLastMouseY,10,10);
             gc.strokeRect(previousLastMouseX,previousLastMouseY,15,15);
-        });
+        });*/
         }
 
 
 
-    public void startSimulation(){
+    public void startSimulation() throws InterruptedException {
         Stockage.windowHeight=canvaPane.getHeight();
         Stockage.windoWidth=canvaPane.getWidth();
         InitializeBoids.Initialize(Stockage.nombreProies,Stockage.nombrePredateurs);
         drawInitiation(gc);
         drawBoids(gc);
+
     }
 
     private void drawInitiation(GraphicsContext gc){
@@ -102,6 +108,7 @@ public class SimulationController implements Initializable {
         canvas.widthProperty().bind(canvaPane.widthProperty());
         canvas.heightProperty().bind(canvaPane.heightProperty());
         gc = canvas.getGraphicsContext2D();
+        Stockage.gc = gc;
         gc.setFill(Color.rgb(0,50,0,00));
     }
 }

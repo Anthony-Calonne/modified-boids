@@ -48,5 +48,23 @@ public class Predateur {
     public double previousX;
     public double previousY;
 
+    public double getyVise() {
+        return yVise;
+    }
+
+    public void setyVise(double yVise) {
+        this.yVise = yVise;
+    }
+
+    public double getxVise() {
+        return xVise;
+    }
+
+    public void setxVise(double xVise) {
+        this.xVise = xVise;
+    }
+
+    public double yVise;
+    public double xVise;
 
 }
