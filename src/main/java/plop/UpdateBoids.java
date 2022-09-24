@@ -1,5 +1,6 @@
 package plop;
 
+import java.util.Random;
 import java.util.TimerTask;
 
 public class UpdateBoids {
@@ -25,6 +26,12 @@ public class UpdateBoids {
             temp = Stockage.predateurs.get(i);
             temp.previousX= temp.getX();
             temp.previousY=temp.getY();
+
+            if(((temp.getX()-temp.getxVise())*(temp.getX()-temp.getxVise())+(temp.getY()-temp.getyVise())*(temp.getY()-temp.getyVise()))<100){
+                temp.xVise=new Random().nextDouble() * (Stockage.windoWidth - 0);
+                temp.yVise=new Random().nextDouble() * (Stockage.windowHeight - 0);
+            }
+
             if (temp.getX()- temp.getxVise()<0){
                 temp.x+=Stockage.vitessePredateurs;
             } else{

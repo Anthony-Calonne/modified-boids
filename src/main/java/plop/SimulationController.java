@@ -39,7 +39,8 @@ public class SimulationController implements Initializable {
 
     void drawBoids(GraphicsContext gc){
         gc.beginPath();
-        gc.setFill(Color.rgb(255,255,255));
+        //gc.setFill(Color.rgb(255,255,255));
+        gc.setFill(Color.rgb(0,0,35));
         int width = (int) canvaPane.getWidth()-1;
         int height = (int) canvaPane.getHeight()-1;
 
