@@ -9,6 +9,15 @@ public class Proie {
     public double previousX;
     public double previousY;
 
+    public double getAngle() {
+        return angle;
+    }
+
+    public void setAngle(double angle) {
+        this.angle = angle;
+    }
+
+    public double angle;
     public double xVise;
 
     public double getxVise() {

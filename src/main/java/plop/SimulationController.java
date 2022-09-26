@@ -50,12 +50,14 @@ public class SimulationController implements Initializable {
             double lateY= temp.getPreviousY();
             double x = temp.getX();
             double y = temp.getY();
-            gc.setStroke(Color.rgb(100,200,100));
-            gc.strokeRect(x,y,2,2);
-            gc.setStroke(Color.rgb(244,244,244));
-            gc.setFill(Color.rgb(244,244,244));
-            gc.strokeRect(lateX,lateY,2,2);
 
+            gc.setStroke(Color.rgb(0,0,0));
+            gc.setFill(Color.rgb(0,0,0));
+            gc.strokeRect(lateX,lateY,4,4);
+            gc.fillRect(lateX-1,lateY-1,4,4);
+
+            gc.setStroke(Color.rgb(100,250,100));
+            gc.strokeRect(x,y,2,2);
         }
         for (int i=0; i<Stockage.nombrePredateurs;i++){
             Predateur temp = Stockage.predateurs.get(i);
@@ -63,12 +65,13 @@ public class SimulationController implements Initializable {
             double lateY= temp.getPreviousY();
             double x = temp.getX();
             double y = temp.getY();
+            gc.setStroke(Color.rgb(0,0,0));
+            gc.setFill(Color.rgb(0,0,0));
+            gc.strokeRect(lateX,lateY,4,4);
+            gc.fillRect(lateX-1,lateY-1,4,4);
+
             gc.setStroke(Color.rgb(250,50,50));
             gc.strokeRect(x,y,2,2);
-            gc.setStroke(Color.rgb(244,244,244));
-            gc.setFill(Color.rgb(244,244,244));
-            gc.strokeRect(lateX,lateY,2,2);
-
         }
         /*canvaPane.addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
             double previousLastMouseY = lastMouseY;

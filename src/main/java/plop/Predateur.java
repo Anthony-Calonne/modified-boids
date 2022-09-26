@@ -5,6 +5,16 @@ public class Predateur {
     public double x;
     public double y;
 
+    public double getAngle() {
+        return angle;
+    }
+
+    public void setAngle(double angle) {
+        this.angle = angle;
+    }
+
+    public double angle;
+
     public int getRank() {
         return rank;
     }

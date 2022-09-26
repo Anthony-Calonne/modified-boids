@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="2020a337-f710-46d8-a51f-a0674021aaaa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/plop/InitializeBoids.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/InitializeBoids.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/plop/Predateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/Predateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/plop/Proie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/Proie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/plop/SimulationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/SimulationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/plop/UpdateBoids.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/UpdateBoids.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plop/SceneSimulation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plop/SceneSimulation.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,5 +127,10 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/modified_boids$plop_main.ic" NAME="plop.main Coverage Results" MODIFIED="1664189278250" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>plop.*</FILTER>
+    </SUITE>
   </component>
 </project>
