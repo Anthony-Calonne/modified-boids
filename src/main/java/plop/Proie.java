@@ -1,42 +1,58 @@
 package plop;
 
-import java.util.Vector;
-
 public class Proie {
+    public int getGreen() {
+        return green;
+    }
+
+    public void setGreen(int green) {
+        this.green = green;
+    }
+
+    public int getBlue() {
+        return blue;
+    }
+
+    public Vec getLocalisation() {
+        return localisation;
+    }
+
+    public Vec getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Vec direction) {
+        this.direction = direction;
+    }
+
+    public Vec direction;
+
+    public void setLocalisation(Vec localisation) {
+        this.localisation = localisation;
+    }
+
+
+    public Vec localisation;
+    public void setBlue(int blue) {
+        this.blue = blue;
+    }
+
+    public int blue;
+    public int green;
     public int rank;
-    public double x;
-    public double y;
+
     public double previousX;
     public double previousY;
 
-    public double getAngle() {
+    public Vec getAngle() {
         return angle;
     }
 
-    public void setAngle(double angle) {
+    public void setAngle(Vec angle) {
         this.angle = angle;
     }
 
-    public double angle;
-    public double xVise;
-
-    public double getxVise() {
-        return xVise;
-    }
-
-    public void setxVise(double xVise) {
-        this.xVise = xVise;
-    }
-
-    public double getyVise() {
-        return yVise;
-    }
-
-    public void setyVise(double yVise) {
-        this.yVise = yVise;
-    }
-
-    public double yVise;
+    public Vec angle;
 
     public int getRank() {
         return rank;
@@ -46,21 +62,7 @@ public class Proie {
         this.rank = rank;
     }
 
-    public double getX() {
-        return x;
-    }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
 
     public double getPreviousX() {
         return previousX;

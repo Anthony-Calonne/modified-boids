@@ -10,11 +10,12 @@ public class Stockage {
     static int nombreProies;
     static int nombrePredateurs;
     static double windowHeight;
-    static double windoWidth;
+    static double windowWidth;
     static ArrayList<Proie> proies = new ArrayList<>();
     static ArrayList<Predateur> predateurs = new ArrayList<>();
     static int vitesseProies = 1;
     static int vitessePredateurs = 1;
+
     static GraphicsContext gc;
 
 }

@@ -1,56 +1,64 @@
 package plop;
 
-import java.util.Random;
 import java.util.TimerTask;
-
 public class UpdateBoids {
-    public static TimerTask updateProies(){
+    
+    static Vec centreGauche = new Vec(Stockage.windowWidth /4,Stockage.windowHeight/2);
+    static Vec centreDroit = new Vec(Stockage.windowWidth -Stockage.windowWidth /4,Stockage.windowHeight/2);
+    static Vec centreHaut = new Vec(Stockage.windowWidth /2,Stockage.windowHeight-Stockage.windowHeight/4);
+    static Vec centreBas = new Vec(Stockage.windowWidth /2,Stockage.windowHeight/4);
+    static int border = 50;
+    static int thinBorder = 3;
+    public static TimerTask update(){
         for (int i=0;i<Stockage.proies.size();i++){
             Proie temp;
             temp = Stockage.proies.get(i);
-            temp.previousX= temp.getX();
-            temp.previousY=temp.getY();
-
-            if(((temp.getX()-temp.getxVise())*(temp.getX()-temp.getxVise())+(temp.getY()-temp.getyVise())*(temp.getY()-temp.getyVise()))<100){
-                temp.xVise=new Random().nextDouble() * (Stockage.windoWidth - 0);
-                temp.yVise=new Random().nextDouble() * (Stockage.windowHeight - 0);
-            }
-            if (temp.getX()- temp.getxVise()<0){
-                temp.x+=Stockage.vitesseProies;
-            } else{
-                temp.x-=Stockage.vitesseProies;
-            }
-            if (temp.getY()- temp.getyVise()<0){
-                temp.y+=Stockage.vitesseProies;
-            } else{
-                temp.y-=Stockage.vitesseProies;                // PBM : va plus vite si en diagonale que si en ligne droite
-            }
-        }
+            temp.previousX= temp.getLocalisation().x;
+            temp.previousY=temp.getLocalisation().y;
+            temp.localisation.add(temp.getDirection());
+            if(temp.localisation.x<border){
+                recentrer(temp.localisation,temp.direction,centreGauche);
+            } else if (temp.localisation.x>Stockage.windowWidth -border) {
+                recentrer(temp.localisation,temp.direction,centreDroit);
+            } else if (temp.localisation.y<border) {
+                recentrer(temp.localisation,temp.direction,centreBas);
+            } else if (temp.localisation.y>Stockage.windowHeight-border) {
+                recentrer(temp.localisation,temp.direction,centreHaut);
+            }        }
         for (int i=0;i<Stockage.predateurs.size();i++){
             Predateur temp;
             temp = Stockage.predateurs.get(i);
-            temp.previousX= temp.getX();
-            temp.previousY=temp.getY();
-
-            if(((temp.getX()-temp.getxVise())*(temp.getX()-temp.getxVise())+(temp.getY()-temp.getyVise())*(temp.getY()-temp.getyVise()))<100){
-                temp.xVise=new Random().nextDouble() * (Stockage.windoWidth - 0);
-                temp.yVise=new Random().nextDouble() * (Stockage.windowHeight - 0);
+            temp.previousX= temp.getLocalisation().x;
+            temp.previousY=temp.getLocalisation().y;
+            temp.localisation.add(temp.getDirection());
+            if(temp.localisation.x<border){
+                recentrer(temp.localisation,temp.direction,centreGauche);
+            } else if (temp.localisation.x>Stockage.windowWidth-border) {
+                recentrer(temp.localisation,temp.direction,centreDroit);
+            } else if (temp.localisation.y<border) {
+                recentrer(temp.localisation,temp.direction,centreBas);
+            } else if (temp.localisation.y>Stockage.windowHeight-border) {
+                recentrer(temp.localisation,temp.direction,centreHaut);
             }
 
-            if (temp.getX()- temp.getxVise()<0){
-                temp.x+=Stockage.vitessePredateurs;
-            } else{
-                temp.x-=Stockage.vitessePredateurs;
-            }
-            if (temp.getY()- temp.getyVise()<0){
-                temp.y+=Stockage.vitessePredateurs;
-            } else{
-                temp.y-=Stockage.vitessePredateurs;                // PBM : va plus vite si en diagonale que si en ligne droite
-            }
+
         }
         return null;
     }
-    public void updatePredateurs(){
+    public static Vec recentrer(Vec localisation,Vec direction, Vec centre){
+        double centreX=centre.x;
+        double centreY=centre.y;
 
+
+        Vec centreTempPourCalc = new Vec(centreX-localisation.x,centreY-localisation.y);
+        centreTempPourCalc.div(centreTempPourCalc.mag());
+        if (localisation.x>thinBorder && localisation.x<Stockage.windowWidth-thinBorder &&localisation.y>thinBorder && localisation.y<Stockage.windowHeight-thinBorder){
+            for (int i = 0; i < 5; i++) {
+                direction.add(direction);
+            }
+        }
+        direction.add(centreTempPourCalc);
+        direction.div(direction.mag());
+        return direction;
     }
 }

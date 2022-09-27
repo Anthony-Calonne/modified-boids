@@ -1,19 +1,54 @@
 package plop;
 
 public class Predateur {
-    public int rank;
-    public double x;
-    public double y;
-
-    public double getAngle() {
-        return angle;
+    public Vec getDirection() {
+        return direction;
     }
 
-    public void setAngle(double angle) {
+    public void setAngle(Vec angle) {
         this.angle = angle;
     }
 
-    public double angle;
+    public Vec angle;
+
+    public void setDirection(Vec direction) {
+        this.direction = direction;
+    }
+
+    public Vec getLocalisation() {
+        return localisation;
+    }
+
+    public void setLocalisation(Vec localisation) {
+        this.localisation = localisation;
+    }
+
+    public Vec direction;
+    public Vec localisation;
+    public int rank;
+
+    public int getBlue() {
+        return blue;
+    }
+
+    public void setBlue(int blue) {
+        this.blue = blue;
+    }
+
+    public int blue;
+    public int getRed() {
+        return red;
+    }
+
+    public void setRed(int red) {
+        this.red = red;
+    }
+
+    public int red;
+
+    public Vec getAngle() {
+        return angle;
+    }
 
     public int getRank() {
         return rank;
@@ -23,21 +58,6 @@ public class Predateur {
         this.rank = rank;
     }
 
-    public double getX() {
-        return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
 
     public double getPreviousX() {
         return previousX;
@@ -58,23 +78,5 @@ public class Predateur {
     public double previousX;
     public double previousY;
 
-    public double getyVise() {
-        return yVise;
-    }
-
-    public void setyVise(double yVise) {
-        this.yVise = yVise;
-    }
-
-    public double getxVise() {
-        return xVise;
-    }
-
-    public void setxVise(double xVise) {
-        this.xVise = xVise;
-    }
-
-    public double yVise;
-    public double xVise;
 
 }

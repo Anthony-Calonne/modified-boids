@@ -7,5 +7,7 @@ module main {
 
     opens plop to javafx.fxml;
     exports plop;
+    requires java.datatransfer;
+    requires java.desktop;
 
 }
