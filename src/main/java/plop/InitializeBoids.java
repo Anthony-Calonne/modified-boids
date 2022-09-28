@@ -5,6 +5,14 @@ import java.lang.Math;
 
 public class InitializeBoids {
     static public void Initialize(int proies, int predateurs){
+
+        Stockage.alignementProies=1000;
+        Stockage.coherenceProies=1000;
+        Stockage.separationProies=500;
+        Stockage.vitesseProies=500;
+        Stockage.porteeVisuProies=500;
+
+
         for (int i=0; i<proies; i++){
             Proie temp = new Proie();
             temp.rank=i;

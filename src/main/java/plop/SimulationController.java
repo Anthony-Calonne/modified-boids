@@ -36,11 +36,11 @@ public class SimulationController implements Initializable {
     double lastMouseX = mouseX;
     double previousLastMouseY = lastMouseY;
     double previousLastMouseX = lastMouseX;
-
+    Color backGroundColor = Color.rgb(40,80,120);
     void drawBoids(GraphicsContext gc){
         gc.beginPath();
         //gc.setFill(Color.rgb(255,255,255));
-        gc.setFill(Color.rgb(0,0,35));
+        gc.setFill(backGroundColor);
         int width = (int) canvaPane.getWidth()-1;
         int height = (int) canvaPane.getHeight()-1;
 
@@ -53,13 +53,15 @@ public class SimulationController implements Initializable {
             int green  = temp.getGreen();
             int blue = temp.getBlue();
 
-            gc.setStroke(Color.rgb(0,0,0));
-            gc.setFill(Color.rgb(0,0,0));
-            gc.strokeRect(lateX,lateY,4,4);
-            gc.fillRect(lateX-1,lateY-1,4,4);
+            gc.setStroke(backGroundColor);
+            gc.setFill(backGroundColor);
+            gc.strokeRect(lateX-2,lateY-2,6,6);
+            //gc.fillRect(lateX-2,lateY-2,6,6);
 
+            gc.setFill(Color.rgb(0,green,blue));
             gc.setStroke(Color.rgb(0,green,blue));
             gc.strokeRect(x,y,3,3);
+            gc.fillRect(x,y,3,3);
         }
         for (int i=0; i<Stockage.nombrePredateurs;i++){
             Predateur temp = Stockage.predateurs.get(i);
@@ -70,12 +72,14 @@ public class SimulationController implements Initializable {
             int red = temp.getRed();
             int blue = temp.getBlue();
 
-            gc.setStroke(Color.rgb(0,0,0));
-            gc.setFill(Color.rgb(0,0,0));
-            gc.strokeRect(lateX,lateY,4,4);
-            gc.fillRect(lateX-1,lateY-1,4,4);
+            gc.setStroke(backGroundColor);
+            gc.setFill(backGroundColor);
+            gc.strokeRect(lateX-2,lateY-2,6,6);
+            gc.fillRect(lateX-2,lateY-2,6,6);
 
+            gc.setFill(Color.rgb(red,50,blue));
             gc.setStroke(Color.rgb(red,50,blue));
+            gc.fillRect(x,y,3,3);
             gc.strokeRect(x,y,3,3);
         }
         /*canvaPane.addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
@@ -99,6 +103,7 @@ public class SimulationController implements Initializable {
 
 
     public void startSimulation() throws InterruptedException {
+        start.setDisable(true);
         Stockage.windowHeight = gc.getCanvas().getHeight();
         Stockage.windowWidth = gc.getCanvas().getWidth();
         InitializeBoids.Initialize(Stockage.nombreProies, Stockage.nombrePredateurs);
@@ -112,7 +117,7 @@ public class SimulationController implements Initializable {
                 drawBoids(gc);
             }
         };
-        timer.scheduleAtFixedRate(task,100,100);
+        timer.scheduleAtFixedRate(task,50,50);
         }
 
 

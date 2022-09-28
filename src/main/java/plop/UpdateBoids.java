@@ -7,7 +7,7 @@ public class UpdateBoids {
     static Vec centreDroit = new Vec(Stockage.windowWidth -Stockage.windowWidth /4,Stockage.windowHeight/2);
     static Vec centreHaut = new Vec(Stockage.windowWidth /2,Stockage.windowHeight-Stockage.windowHeight/4);
     static Vec centreBas = new Vec(Stockage.windowWidth /2,Stockage.windowHeight/4);
-    static int border = 50;
+    static int border = 35;
     static int thinBorder = 3;
     public static TimerTask update(){
         for (int i=0;i<Stockage.proies.size();i++){
@@ -16,16 +16,32 @@ public class UpdateBoids {
             temp.previousX= temp.getLocalisation().x;
             temp.previousY=temp.getLocalisation().y;
             temp.localisation.add(temp.getDirection());
+
+
+
             if(temp.localisation.x<border){
                 recentrer(temp.localisation,temp.direction,centreGauche);
+                temp.border=1;
             } else if (temp.localisation.x>Stockage.windowWidth -border) {
                 recentrer(temp.localisation,temp.direction,centreDroit);
+                temp.border=1;
             } else if (temp.localisation.y<border) {
                 recentrer(temp.localisation,temp.direction,centreBas);
+                temp.border=1;
             } else if (temp.localisation.y>Stockage.windowHeight-border) {
                 recentrer(temp.localisation,temp.direction,centreHaut);
-            }        }
+                temp.border=1;
+            } else /*if (temp.localisation.x>border+Stockage.porteeVisuProies&&temp.localisation.x<Stockage.windowWidth-(border+Stockage.porteeVisuProies)&&temp.localisation.y>border+Stockage.porteeVisuProies&&temp.localisation.y<Stockage.windowHeight-(border+Stockage.porteeVisuProies))*/{
+                temp.setDirection(View.viewProies(temp.localisation,temp.direction));
+                temp.border=0;
+            }
+
+
+
+        }
         for (int i=0;i<Stockage.predateurs.size();i++){
+            Stockage.iteration++;
+            System.out.println(Stockage.iteration);
             Predateur temp;
             temp = Stockage.predateurs.get(i);
             temp.previousX= temp.getLocalisation().x;
@@ -45,7 +61,7 @@ public class UpdateBoids {
         }
         return null;
     }
-    public static Vec recentrer(Vec localisation,Vec direction, Vec centre){
+    public static void recentrer(Vec localisation, Vec direction, Vec centre){
         double centreX=centre.x;
         double centreY=centre.y;
 
@@ -53,12 +69,11 @@ public class UpdateBoids {
         Vec centreTempPourCalc = new Vec(centreX-localisation.x,centreY-localisation.y);
         centreTempPourCalc.div(centreTempPourCalc.mag());
         if (localisation.x>thinBorder && localisation.x<Stockage.windowWidth-thinBorder &&localisation.y>thinBorder && localisation.y<Stockage.windowHeight-thinBorder){
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 3; i++) {
                 direction.add(direction);
             }
         }
         direction.add(centreTempPourCalc);
         direction.div(direction.mag());
-        return direction;
     }
 }

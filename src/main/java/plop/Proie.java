@@ -4,7 +4,7 @@ public class Proie {
     public int getGreen() {
         return green;
     }
-
+    public int border=0;
     public void setGreen(int green) {
         this.green = green;
     }
