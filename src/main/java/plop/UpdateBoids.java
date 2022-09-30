@@ -7,6 +7,7 @@ public class UpdateBoids {
     static Vec centreDroit = new Vec(Stockage.windowWidth -Stockage.windowWidth /4,Stockage.windowHeight/2);
     static Vec centreHaut = new Vec(Stockage.windowWidth /2,Stockage.windowHeight-Stockage.windowHeight/4);
     static Vec centreBas = new Vec(Stockage.windowWidth /2,Stockage.windowHeight/4);
+    static Vec centreFenetre = new Vec(Stockage.windowWidth/2,Stockage.windowHeight/2);
     static int border = 35;
     static int thinBorder = 3;
     public static TimerTask update(){
@@ -17,9 +18,17 @@ public class UpdateBoids {
             temp.previousY=temp.getLocalisation().y;
             temp.localisation.add(temp.getDirection());
 
+            Vec loca=temp.localisation;
 
-
-            if(temp.localisation.x<border){
+            if (loca.x<border || loca.x>Stockage.windowWidth-border||loca.y<border||loca.y>Stockage.windowHeight-border){
+                recentrer(temp.localisation,temp.direction,centreFenetre);
+                temp.border=(int)Stockage.porteeVisuProies;
+            } else if (temp.border<0){
+                temp.setDirection((View.viewProies(temp.localisation,temp.direction)));
+            } else{
+                temp.border--;
+            }
+            /*if(temp.localisation.x<border){
                 recentrer(temp.localisation,temp.direction,centreGauche);
                 temp.border=1;
             } else if (temp.localisation.x>Stockage.windowWidth -border) {
@@ -31,17 +40,13 @@ public class UpdateBoids {
             } else if (temp.localisation.y>Stockage.windowHeight-border) {
                 recentrer(temp.localisation,temp.direction,centreHaut);
                 temp.border=1;
-            } else /*if (temp.localisation.x>border+Stockage.porteeVisuProies&&temp.localisation.x<Stockage.windowWidth-(border+Stockage.porteeVisuProies)&&temp.localisation.y>border+Stockage.porteeVisuProies&&temp.localisation.y<Stockage.windowHeight-(border+Stockage.porteeVisuProies))*/{
+            } else if (temp.localisation.x>border+Stockage.porteeVisuProies&&temp.localisation.x<Stockage.windowWidth-(border+Stockage.porteeVisuProies)&&temp.localisation.y>border+Stockage.porteeVisuProies&&temp.localisation.y<Stockage.windowHeight-(border+Stockage.porteeVisuProies)){
                 temp.setDirection(View.viewProies(temp.localisation,temp.direction));
                 temp.border=0;
-            }
-
-
+            }*/
 
         }
         for (int i=0;i<Stockage.predateurs.size();i++){
-            Stockage.iteration++;
-            System.out.println(Stockage.iteration);
             Predateur temp;
             temp = Stockage.predateurs.get(i);
             temp.previousX= temp.getLocalisation().x;

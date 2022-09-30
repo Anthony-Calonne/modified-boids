@@ -6,11 +6,11 @@ import java.lang.Math;
 public class InitializeBoids {
     static public void Initialize(int proies, int predateurs){
 
-        Stockage.alignementProies=1000;
-        Stockage.coherenceProies=1000;
-        Stockage.separationProies=500;
-        Stockage.vitesseProies=500;
-        Stockage.porteeVisuProies=500;
+        Stockage.alignementProies=50;
+        Stockage.coherenceProies=50;
+        Stockage.separationProies=30;
+        Stockage.vitesseProies=50;
+        Stockage.porteeVisuProies=60;
 
 
         for (int i=0; i<proies; i++){
