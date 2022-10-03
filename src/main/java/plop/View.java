@@ -28,8 +28,8 @@ public class View {
                 if (distanceBoids < porteeVisu &&distanceBoids!=0) { //Si le boid peut voir l'autre :
                     // 1) Si il est proche alors il s'en éloigne
                     if (distanceBoids < separation) {
-                        sepa.x += locaTemp.x - localisation.x;
-                        sepa.y += locaTemp.y - localisation.y;
+                        sepa.x += localisation.x - locaTemp.x;
+                        sepa.y += localisation.y - locaTemp.y;
 
                     }
                     if (distanceBoids < alignement && temp.border==0) {

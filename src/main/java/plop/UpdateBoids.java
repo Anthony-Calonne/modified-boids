@@ -12,6 +12,7 @@ public class UpdateBoids {
     static int thinBorder = 3;
     public static TimerTask update(){
         for (int i=0;i<Stockage.proies.size();i++){
+
             Proie temp;
             temp = Stockage.proies.get(i);
             temp.previousX= temp.getLocalisation().x;
