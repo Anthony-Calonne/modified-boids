@@ -29,23 +29,6 @@ public class UpdateBoids {
             } else{
                 temp.border--;
             }
-            /*if(temp.localisation.x<border){
-                recentrer(temp.localisation,temp.direction,centreGauche);
-                temp.border=1;
-            } else if (temp.localisation.x>Stockage.windowWidth -border) {
-                recentrer(temp.localisation,temp.direction,centreDroit);
-                temp.border=1;
-            } else if (temp.localisation.y<border) {
-                recentrer(temp.localisation,temp.direction,centreBas);
-                temp.border=1;
-            } else if (temp.localisation.y>Stockage.windowHeight-border) {
-                recentrer(temp.localisation,temp.direction,centreHaut);
-                temp.border=1;
-            } else if (temp.localisation.x>border+Stockage.porteeVisuProies&&temp.localisation.x<Stockage.windowWidth-(border+Stockage.porteeVisuProies)&&temp.localisation.y>border+Stockage.porteeVisuProies&&temp.localisation.y<Stockage.windowHeight-(border+Stockage.porteeVisuProies)){
-                temp.setDirection(View.viewProies(temp.localisation,temp.direction));
-                temp.border=0;
-            }*/
-
         }
         for (int i=0;i<Stockage.predateurs.size();i++){
             Predateur temp;
@@ -53,14 +36,15 @@ public class UpdateBoids {
             temp.previousX= temp.getLocalisation().x;
             temp.previousY=temp.getLocalisation().y;
             temp.localisation.add(temp.getDirection());
-            if(temp.localisation.x<border){
-                recentrer(temp.localisation,temp.direction,centreGauche);
-            } else if (temp.localisation.x>Stockage.windowWidth-border) {
-                recentrer(temp.localisation,temp.direction,centreDroit);
-            } else if (temp.localisation.y<border) {
-                recentrer(temp.localisation,temp.direction,centreBas);
-            } else if (temp.localisation.y>Stockage.windowHeight-border) {
-                recentrer(temp.localisation,temp.direction,centreHaut);
+            Vec loca=temp.localisation;
+
+            if (loca.x<border || loca.x>Stockage.windowWidth-border||loca.y<border||loca.y>Stockage.windowHeight-border){
+                recentrer(temp.localisation,temp.direction,centreFenetre);
+                temp.border=(int)Stockage.porteeVisuProies;
+            } else if (temp.border<0){
+                temp.setDirection((View.viewPreda(temp.localisation,temp.direction)));
+            } else{
+                temp.border--;
             }
 
 

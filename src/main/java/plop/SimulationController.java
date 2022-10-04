@@ -115,11 +115,22 @@ public class SimulationController implements Initializable {
             public void run() {
                 UpdateBoids.update();
                 drawBoids(gc);
+                updateDataSet();
             }
         };
         timer.scheduleAtFixedRate(task,50,50);
         }
+        public void updateDataSet(){
+            Stockage.alignementProies=aliProies.getValue();
+            Stockage.alignementPreda=aliPreda.getValue();
+            Stockage.porteeVisuProies=visuProies.getValue();
+            Stockage.porteeVisuPreda=visuPreda.getValue();
+            Stockage.coherenceProies=coheProies.getValue();
+            Stockage.coherencePreda=cohePreda.getValue();
+            Stockage.separationProies=sepaProies.getValue();
+            Stockage.separationPreda=sepaPreda.getValue();
 
+        }
 
 
 

@@ -25,6 +25,7 @@ public class Predateur {
 
     public Vec direction;
     public Vec localisation;
+    public int border=0;
     public int rank;
 
     public int getBlue() {
