@@ -11,7 +11,8 @@ public class UpdateBoids {
     static int border = 35;
     static int thinBorder = 3;
     public static TimerTask update(){
-        for (int i=0;i<Stockage.proies.size();i++){
+
+        for (int i=0;i<Stockage.proies.size();i++){ //Proies
 
             Proie temp;
             temp = Stockage.proies.get(i);
@@ -26,11 +27,14 @@ public class UpdateBoids {
                 temp.border=(int)Stockage.porteeVisuProies;
             } else if (temp.border<0){
                 temp.setDirection((View.viewProies(temp.localisation,temp.direction)));
+                View.flee(temp.localisation,temp.direction);
             } else{
                 temp.border--;
             }
+
         }
-        for (int i=0;i<Stockage.predateurs.size();i++){
+
+        for (int i=0;i<Stockage.predateurs.size();i++){  //Prédateurs
             Predateur temp;
             temp = Stockage.predateurs.get(i);
             temp.previousX= temp.getLocalisation().x;
@@ -40,7 +44,7 @@ public class UpdateBoids {
 
             if (loca.x<border || loca.x>Stockage.windowWidth-border||loca.y<border||loca.y>Stockage.windowHeight-border){
                 recentrer(temp.localisation,temp.direction,centreFenetre);
-                temp.border=(int)Stockage.porteeVisuProies;
+                temp.border=(int)Stockage.porteeVisuPreda;
             } else if (temp.border<0){
                 temp.setDirection((View.viewPreda(temp.localisation,temp.direction)));
             } else{

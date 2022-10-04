@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 public class Stockage {
     static int iteration = 0;
+    static double fear = 1;
+
     static FXMLLoader currentFxmlLoader = new FXMLLoader(main.class.getResource("SceneOuverture.fxml"));
     static int nombreProies;
     static int nombrePredateurs;

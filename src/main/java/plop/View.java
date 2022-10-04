@@ -83,6 +83,38 @@ public class View {
 
         return direction;
     }
+    public static Vec flee(Vec localisation, Vec direction){
+        double fear = Stockage.fear;
+        double porteeVisu = Stockage.porteeVisuProies;
+        Vec sepa=new Vec(0,0);
+        for (int i=0;i<Stockage.predateurs.size();i++){
+            Predateur temp = Stockage.predateurs.get(i);
+            Vec locaTemp = temp.localisation;
+            double distanceBoids = Vec.dist(localisation, locaTemp);
+            if (distanceBoids < porteeVisu &&distanceBoids!=0) {
+                sepa.x += localisation.x - locaTemp.x;
+                sepa.y += localisation.y - locaTemp.y;
+            }
+        }
+
+        double sepaLength =1;
+        if (sepa.x!=0&&sepa.y!=0) {
+            sepaLength = (double) sqrt(pow(sepa.x, 2) + pow(sepa.y, 2));
+        }
+
+        sepa.x/=sepaLength;
+        sepa.y/=sepaLength;
+
+        direction.x+=(sepa.x*fear);
+        direction.y+=(sepa.y*fear);
+
+        double directionLength = sqrt(pow(direction.x, 2) + pow(direction.y, 2));
+
+        direction.div(directionLength);
+
+        return direction;
+
+    }
     public static Vec viewPreda(Vec localisation,Vec direction){
 
         //Initialisation des variables
@@ -99,7 +131,6 @@ public class View {
 
         for(int i=0;i<Stockage.predateurs.size();i++){
             Predateur temp = Stockage.predateurs.get(i);
-            {
                 Vec locaTemp = temp.localisation;
                 Vec dirTemp = temp.direction;
                 double distanceBoids = Vec.dist(localisation, locaTemp);
@@ -119,7 +150,7 @@ public class View {
                         cohe.y += dirTemp.y;
 
                     }
-                }
+
             }
         }
 
