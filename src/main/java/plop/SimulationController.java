@@ -114,6 +114,7 @@ public class SimulationController implements Initializable {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
+                Stockage.nombreProies=Stockage.proies.size();
                 UpdateBoids.update();
                 drawBoids(gc);
                 updateDataSet();

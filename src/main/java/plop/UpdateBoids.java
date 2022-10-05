@@ -12,7 +12,7 @@ public class UpdateBoids {
     static int thinBorder = 3;
     public static TimerTask update(){
 
-        for (int i=0;i<Stockage.proies.size();i++){ //Proies
+        for (int i=0;i<Stockage.nombreProies;i++){ //Proies
 
             Proie temp;
             temp = Stockage.proies.get(i);
@@ -26,7 +26,7 @@ public class UpdateBoids {
                 recentrer(temp.localisation,temp.direction,centreFenetre);
                 temp.border=(int)Stockage.porteeVisuProies;
             } else if (temp.border<0){
-                temp.setDirection((View.viewProies(temp.localisation,temp.direction)));
+                temp.setDirection((View.viewProies(temp.localisation,temp.direction,temp.getGreen(),temp.getBlue())));
                 View.flee(temp.localisation,temp.direction);
             } else{
                 temp.border--;

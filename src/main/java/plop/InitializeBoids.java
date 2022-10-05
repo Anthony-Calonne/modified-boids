@@ -15,7 +15,6 @@ public class InitializeBoids {
 
         for (int i=0; i<proies; i++){
             Proie temp = new Proie();
-            temp.rank=i;
             double x=new Random().nextDouble() * (Stockage.windowWidth - 0);
             double y=new Random().nextDouble() * (Stockage.windowHeight - 0);
 

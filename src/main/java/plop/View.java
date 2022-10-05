@@ -5,7 +5,7 @@ import static java.lang.Math.sqrt;
 
 public class View {
 
-    public static Vec viewProies(Vec localisation,Vec direction){
+    public static Vec viewProies(Vec localisation,Vec direction,int greenOne,int blueOne){
 
         //Initialisation des variables
 
@@ -21,31 +21,40 @@ public class View {
 
         for(int i=0;i<Stockage.proies.size();i++){
             Proie temp = Stockage.proies.get(i);
-            {
-                Vec locaTemp = temp.localisation;
-                Vec dirTemp = temp.direction;
-                double distanceBoids = Vec.dist(localisation, locaTemp);
-                if (distanceBoids < porteeVisu &&distanceBoids!=0) { //Si le boid peut voir l'autre :
-                    // 1) Si il est proche alors il s'en éloigne
-                    if (distanceBoids < separation) {
-                        sepa.x += localisation.x - locaTemp.x;
-                        sepa.y += localisation.y - locaTemp.y;
+            Vec locaTemp = temp.localisation;
+            Vec dirTemp = temp.direction;
+            double distanceBoids = Vec.dist(localisation, locaTemp);
+            if (distanceBoids < porteeVisu &&distanceBoids!=0) { //Si le boid peut voir l'autre :
+                // 1) Si il est proche alors il s'en éloigne
+                if (distanceBoids < separation) {
+                    sepa.x += localisation.x - locaTemp.x;
+                    sepa.y += localisation.y - locaTemp.y;
 
-                    }
-                    if (distanceBoids < alignement && temp.border==0) {
-                        ali.x += localisation.x - locaTemp.x;
-                        ali.y += localisation.y - locaTemp.y;
-                    }
-                    if (distanceBoids < coherence) {
-                        cohe.x += dirTemp.x;
-                        cohe.y += dirTemp.y;
-
-                    }
+                }
+                if (distanceBoids < alignement && temp.border==0) {
+                    ali.x += localisation.x - locaTemp.x;
+                    ali.y += localisation.y - locaTemp.y;
+                }
+                if (distanceBoids < coherence) {
+                    cohe.x += dirTemp.x;
+                    cohe.y += dirTemp.y;
                 }
             }
         }
 
+
+        for(int i=0;i<Stockage.proies.size();i++){
+            Proie temp = Stockage.proies.get(i);
+            Vec locaTemp = temp.localisation;
+            Vec dirTemp = temp.direction;
+            double distanceBoids = Vec.dist(localisation, locaTemp);
+            if(sepa.x==0&&sepa.y==0&& distanceBoids<porteeVisu){        //ajouter la descendance possible par boid
+                proiesRepro(localisation, locaTemp, direction, dirTemp, greenOne, blueOne, temp.getGreen(), temp.getBlue());
+            }
+        }
+
         double sepaLength =1;
+
         double aliLength =1;
         double coheLength =1;
 
@@ -148,9 +157,9 @@ public class View {
                     if (distanceBoids < coherence) {
                         cohe.x += dirTemp.x;
                         cohe.y += dirTemp.y;
-
                     }
 
+                    // Ajout de la fonction de reproduction
             }
         }
 
@@ -191,6 +200,43 @@ public class View {
         direction.div(directionLength);
 
         return direction;
+    }
+
+
+
+
+
+
+
+
+
+    //Systèmes de reproduction
+
+    public static void proiesRepro(Vec localisation, Vec locaTemp, Vec directionP, Vec directionM,int greenOne,int greenTwo,int blueOne,int blueTwo){
+        float proba = (float)Math.random() * (100 - 0) + 0;
+
+        Vec sepa=new Vec(0,0);
+        if (proba>99.9 && Stockage.proies.size()<300){
+            Proie littleOne= new Proie();
+            double x = (localisation.x+ locaTemp.x)/2;
+            double y = (localisation.y+ locaTemp.y)/2;
+            littleOne.localisation=new Vec(x,y);
+
+            double xVise= (directionP.x+directionM.x)/2;
+            double yVise= (directionP.y+directionM.y)/2;
+            littleOne.direction=new Vec(xVise,yVise);
+
+            int green =  0;
+            int blue = 0;
+
+            littleOne.setGreen(green);
+            littleOne.setBlue(blue);
+
+            littleOne.previousX=0;
+            littleOne.previousY=0;
+
+            Stockage.proies.add(littleOne);
+        }
     }
 }
 
