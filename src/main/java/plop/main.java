@@ -6,7 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Timer;
@@ -31,7 +33,10 @@ public class main extends Application {
         //simuStage.getIcons().add(logo);
         simuStage.setTitle("Simulation");
         simuStage.show();
-
+        simuStage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
+    }
+    public void closeWindowEvent(WindowEvent event){
+        Stockage.WindowClosed=0;
     }
     @Override
     public void start(Stage primaryStage) throws IOException {		//Crée la première fenêtre quand le programme est lancé

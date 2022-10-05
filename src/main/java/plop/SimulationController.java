@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import org.controlsfx.tools.Platform;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,6 +30,8 @@ public class SimulationController implements Initializable {
     @FXML private Slider vitesseProies;
     @FXML private Button start;
     @FXML public  AnchorPane canvaPane;
+    @FXML public Text nbProiesRestantes;
+    @FXML public Text nbPredateursRestants;
     GraphicsContext gc;
 
     double mouseX;
@@ -116,21 +120,34 @@ public class SimulationController implements Initializable {
                 UpdateBoids.update();
                 drawBoids(gc);
                 updateDataSet();
+                updateShownData();
+                if (Stockage.WindowClosed==0){
+                    timer.cancel();
+                    timer.purge();
+                }
             }
         };
         timer.scheduleAtFixedRate(task,50,50);
-        }
-        public void updateDataSet(){
-            Stockage.alignementProies=aliProies.getValue();
-            Stockage.alignementPreda=aliPreda.getValue();
-            Stockage.porteeVisuProies=visuProies.getValue();
-            Stockage.porteeVisuPreda=visuPreda.getValue();
-            Stockage.coherenceProies=coheProies.getValue();
-            Stockage.coherencePreda=cohePreda.getValue();
-            Stockage.separationProies=sepaProies.getValue();
-            Stockage.separationPreda=sepaPreda.getValue();
 
-        }
+    }
+
+
+
+    public void updateDataSet(){
+        Stockage.alignementProies=aliProies.getValue();
+        Stockage.alignementPreda=aliPreda.getValue();
+        Stockage.porteeVisuProies=visuProies.getValue();
+        Stockage.porteeVisuPreda=visuPreda.getValue();
+        Stockage.coherenceProies=coheProies.getValue();
+        Stockage.coherencePreda=cohePreda.getValue();
+        Stockage.separationProies=sepaProies.getValue();
+        Stockage.separationPreda=sepaPreda.getValue();
+    }
+
+    public void updateShownData(){
+        nbProiesRestantes.setText("Proies : "+Stockage.proies.size());
+        nbPredateursRestants.setText("Predateurs : "+ Stockage.predateurs.size());
+    }
 
 
 
@@ -166,5 +183,6 @@ public class SimulationController implements Initializable {
         gc = canvas.getGraphicsContext2D();
         Stockage.gc = gc;
         gc.setFill(Color.rgb(0,50,0,00));
+
     }
 }
