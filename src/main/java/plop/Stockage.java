@@ -6,6 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 import java.util.ArrayList;
 
 public class Stockage {
+    public static boolean traces=true;
     public static int WindowClosed=1;
     static int iteration = 0;
     static double fear = 1;

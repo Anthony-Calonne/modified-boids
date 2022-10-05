@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.controlsfx.tools.Platform;
 
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Timer;
@@ -32,7 +33,9 @@ public class SimulationController implements Initializable {
     @FXML public  AnchorPane canvaPane;
     @FXML public Text nbProiesRestantes;
     @FXML public Text nbPredateursRestants;
+    @FXML public Button traces;
     GraphicsContext gc;
+    Canvas canvas = new Canvas();
 
     double mouseX;
     double mouseY;
@@ -60,8 +63,9 @@ public class SimulationController implements Initializable {
             gc.setStroke(backGroundColor);
             gc.setFill(backGroundColor);
             gc.strokeRect(lateX-2,lateY-2,6,6);
-            //gc.fillRect(lateX-2,lateY-2,6,6);
-
+            if (Stockage.traces){
+                gc.fillRect(lateX - 2, lateY - 2, 6, 6);
+            }
             gc.setFill(Color.rgb(0,green,blue));
             gc.setStroke(Color.rgb(0,green,blue));
             gc.strokeRect(x,y,3,3);
@@ -79,32 +83,25 @@ public class SimulationController implements Initializable {
             gc.setStroke(backGroundColor);
             gc.setFill(backGroundColor);
             gc.strokeRect(lateX-2,lateY-2,6,6);
-            gc.fillRect(lateX-2,lateY-2,6,6);
+            if (Stockage.traces){
+                gc.fillRect(lateX - 2, lateY - 2, 6, 6);
+            }
 
             gc.setFill(Color.rgb(red,50,blue));
             gc.setStroke(Color.rgb(red,50,blue));
             gc.fillRect(x,y,3,3);
             gc.strokeRect(x,y,3,3);
         }
-        /*canvaPane.addEventFilter(MouseEvent.MOUSE_MOVED, e -> {
-            double previousLastMouseY = lastMouseY;
-            double previousLastMouseX = lastMouseX;
-
-            double lastMouseY = mouseY;
-            double lastMouseX = mouseX;
-            mouseX = e.getSceneX();
-            mouseY = e.getSceneY();
-            gc.setStroke(Color.rgb(00,00,00));
-            gc.strokeRect(mouseX,mouseY,1,1);
-            gc.setStroke(Color.rgb(244,244,244));
-            gc.fillRect(lastMouseX,lastMouseY,1,1);
-            gc.strokeRect(lastMouseX,lastMouseY,5,5);
-            gc.fillRect(previousLastMouseX,previousLastMouseY,10,10);
-            gc.strokeRect(previousLastMouseX,previousLastMouseY,15,15);
-        });*/
         }
 
-
+    public void traces(){
+        if (Stockage.traces){
+            Stockage.traces=false;
+            gc.clearRect(0, 0,canvas.getWidth(),canvas.getHeight());
+        } else{
+            Stockage.traces=true;
+        }
+    }
 
     public void startSimulation() throws InterruptedException {
         start.setDisable(true);
@@ -176,7 +173,6 @@ public class SimulationController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Canvas canvas = new Canvas();
         canvaPane.getChildren().add(canvas);
         canvas.widthProperty().bind(canvaPane.widthProperty());
         canvas.heightProperty().bind(canvaPane.heightProperty());

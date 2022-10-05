@@ -88,7 +88,8 @@
                         <Text fx:id="nbPredateursRestants" layoutX="34.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Predateurs :" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="200.0" />
                      </children>
                   </AnchorPane>
-                  <Button fx:id="start" layoutX="319.0" layoutY="73.0" mnemonicParsing="false" onAction="#startSimulation" text="Start" AnchorPane.bottomAnchor="14.200000000000003" />
+                  <Button fx:id="start" layoutX="319.0" layoutY="73.0" mnemonicParsing="false" onAction="#startSimulation" text="Start" AnchorPane.bottomAnchor="50.0" />
+                  <Button fx:id="traces" layoutX="314.0" layoutY="14.0" mnemonicParsing="false" onAction="#traces" text="Traces" AnchorPane.bottomAnchor="15.0" />
                </children>
             </AnchorPane>
          </items>

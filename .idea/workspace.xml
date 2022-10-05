@@ -8,7 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/plop/SimulationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/SimulationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/plop/Stockage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/Stockage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/plop/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plop/SceneSimulation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plop/SceneSimulation.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
