@@ -5,7 +5,7 @@ import static java.lang.Math.sqrt;
 
 public class View {
 
-    public static Vec viewProies(Vec localisation,Vec direction,int greenOne,int blueOne){
+    public static Vec viewProies(Vec localisation,Vec direction,int greenOne,int blueOne,int nombreReproM,int rangM){
 
         //Initialisation des variables
 
@@ -48,8 +48,16 @@ public class View {
             Vec locaTemp = temp.localisation;
             Vec dirTemp = temp.direction;
             double distanceBoids = Vec.dist(localisation, locaTemp);
-            if(sepa.x==0&&sepa.y==0&& distanceBoids<porteeVisu){        //ajouter la descendance possible par boid
+            if(sepa.x==0&&sepa.y==0&& distanceBoids<porteeVisu && nombreReproM>0 && temp.nombreReproRestantes>0){        //ajouter la descendance possible par boid
+                int nbProies = Stockage.proies.size();
                 proiesRepro(localisation, locaTemp, direction, dirTemp, greenOne, blueOne, temp.getGreen(), temp.getBlue());
+                int nbProies2 = Stockage.proies.size();
+                if (nbProies2>nbProies){
+                    System.out.println(temp.nombreReproRestantes + " et " + Stockage.proies.get(rangM).nombreReproRestantes);
+                    Stockage.proies.get(rangM).nombreReproRestantes--;
+                    temp.nombreReproRestantes--;
+                    System.out.println(temp.nombreReproRestantes + " et " + Stockage.proies.get(rangM).nombreReproRestantes);
+                }
             }
         }
 
