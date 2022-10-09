@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import org.controlsfx.tools.Platform;
 
@@ -34,6 +35,10 @@ public class SimulationController implements Initializable {
     @FXML public Text nbProiesRestantes;
     @FXML public Text nbPredateursRestants;
     @FXML public Button traces;
+    @FXML public Circle couleurProieInit;
+    @FXML public Circle couleurProieActu;
+    @FXML public Circle couleurPredaInit;
+    @FXML public Circle couleurPredaActu;
     GraphicsContext gc;
     Canvas canvas = new Canvas();
 
@@ -123,12 +128,39 @@ public class SimulationController implements Initializable {
                     timer.cancel();
                     timer.purge();
                 }
+                couleurPredaActu.setFill(updateColor(1));
+                couleurProieActu.setFill(updateColor(0));
             }
         };
         timer.scheduleAtFixedRate(task,50,50);
 
     }
 
+    public Color updateColor(int i){
+        Color color = null;
+        if (i==1){
+            int red=0;
+            int blue=0;
+            for (int y=0;y<Stockage.predateurs.size();y++){
+                red+=Stockage.predateurs.get(y).getRed();
+                blue+=Stockage.predateurs.get(y).getBlue();
+            }
+            red/=Stockage.predateurs.size();
+            blue/=Stockage.predateurs.size();
+            color = Color.rgb(red,50,blue);
+        } else {
+            int blue=0;
+            int green=0;
+            for(int y=0;y<Stockage.proies.size();y++){
+                blue+=Stockage.proies.get(y).getBlue();
+                green+=Stockage.proies.get(y).getGreen();
+            }
+            blue/=Stockage.proies.size();
+            green/=Stockage.proies.size();
+            color = Color.rgb(50,green,blue);
+        }
+        return color;
+    }
 
 
     public void updateDataSet(){
@@ -158,6 +190,8 @@ public class SimulationController implements Initializable {
         for (int i = 0;i<Stockage.nombrePredateurs;i++ ){
             gc.strokeRect(Stockage.predateurs.get(i).getLocalisation().x,Stockage.predateurs.get(i).getLocalisation().y,2,2);
         }
+        couleurProieInit.setFill(updateColor(0));
+        couleurPredaInit.setFill(updateColor(1));
     }
 
 
@@ -180,6 +214,5 @@ public class SimulationController implements Initializable {
         gc = canvas.getGraphicsContext2D();
         Stockage.gc = gc;
         gc.setFill(Color.rgb(0,50,0,00));
-
     }
 }

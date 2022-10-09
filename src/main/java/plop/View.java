@@ -237,8 +237,8 @@ public class View {
             int green =  0;
             int blue = 0;
 
-            littleOne.setGreen(green);
-            littleOne.setBlue(blue);
+            littleOne.setGreen((greenOne+greenTwo)/2);
+            littleOne.setBlue((blueOne+blueTwo)/2);
 
             littleOne.previousX=0;
             littleOne.previousY=0;

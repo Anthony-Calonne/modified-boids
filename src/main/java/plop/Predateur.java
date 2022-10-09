@@ -81,3 +81,20 @@ public class Predateur {
 
 
 }
+
+
+
+
+/*Pour le moment : proposition :
+
+
+Autre idée :
+Les prédateurs restent en groupe ou suivent les proies, on peut leur donner deux variables : le temps, lié à leur endurance.
+La deuxième variable est le pourcentage d'essai d'attaque de proies/suivi de proies.
+Si ils suivent une proie, il le font durant un temps égal à leur endurance, de même pour le suivi des prédateurs.
+Si ils suivent une proie, automatiquement, qu'ils aient réussi ou non, ils retournent ensuite vers les prédateurs.
+Si ils suivent les prédateurs, à chaque fin d'endurance, ils ont une chance égal au pourcentage d'essai d'attaque de commencer à viser les proies.
+
+On leur attribue une troisième variable, le nombre d'essai restant, s'il est égal à zéro, ils meurent.
+S'ils attrapent une proie, il est réinitialisé, et la probab d'attaquer est copiée dans les prédas qui peuvent le voir (mettre une animation graphique pour le montrer).
+Il faut donc également créer un système de réussite/perte lors de la chasse.*/

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane minHeight="600.0" minWidth="680.0" prefHeight="180.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="plop.SimulationController">
@@ -49,6 +50,8 @@
                            </buttons>
                         </ButtonBar>
                         <Text fx:id="nbProiesRestantes" layoutX="203.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proies :" wrappingWidth="76.72851562499989" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="200.0" />
+                        <Circle fx:id="couleurProieInit" fill="DODGERBLUE" layoutX="273.0" layoutY="36.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="10.0" />
+                        <Circle fx:id="couleurProieActu" fill="DODGERBLUE" layoutX="283.0" layoutY="46.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="10.0" />
                      </children>
                   </AnchorPane>
                   <Separator layoutX="347.0" layoutY="-58.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.leftAnchor="350.0" AnchorPane.rightAnchor="350.0" />
@@ -86,6 +89,8 @@
                            </buttons>
                         </ButtonBar>
                         <Text fx:id="nbPredateursRestants" layoutX="34.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Predateurs :" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="200.0" />
+                        <Circle fx:id="couleurPredaInit" fill="DODGERBLUE" layoutX="47.0" layoutY="28.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="10.0" />
+                        <Circle fx:id="couleurPredaActu" fill="DODGERBLUE" layoutX="57.0" layoutY="38.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="10.0" />
                      </children>
                   </AnchorPane>
                   <Button fx:id="start" layoutX="319.0" layoutY="73.0" mnemonicParsing="false" onAction="#startSimulation" text="Start" AnchorPane.bottomAnchor="50.0" />
