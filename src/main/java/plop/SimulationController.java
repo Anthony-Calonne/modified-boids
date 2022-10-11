@@ -84,6 +84,10 @@ public class SimulationController implements Initializable {
             double y = temp.getLocalisation().y;
             int red = temp.getRed();
             int blue = temp.getBlue();
+            if (temp.attaque){
+                red=0;
+                blue=0;
+            }
 
             gc.setStroke(backGroundColor);
             gc.setFill(backGroundColor);
@@ -142,8 +146,8 @@ public class SimulationController implements Initializable {
             int red=0;
             int blue=0;
             for (int y=0;y<Stockage.predateurs.size();y++){
-                red+=Stockage.predateurs.get(y).getRed();
-                blue+=Stockage.predateurs.get(y).getBlue();
+                red += Stockage.predateurs.get(y).getRed();
+                blue += Stockage.predateurs.get(y).getBlue();
             }
             red/=Stockage.predateurs.size();
             blue/=Stockage.predateurs.size();

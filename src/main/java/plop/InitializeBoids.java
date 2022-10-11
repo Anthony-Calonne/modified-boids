@@ -41,6 +41,8 @@ public class InitializeBoids {
             Predateur temp = new Predateur();
             temp.rank=i;
 
+
+
             double x=new Random().nextDouble() * (Stockage.windowWidth - 0);
             double y=new Random().nextDouble() * (Stockage.windowHeight - 0);
 
@@ -58,6 +60,12 @@ public class InitializeBoids {
             temp.previousY=0;
             temp.red = (int) (Math.random() * (255 - 90) + 90);
             temp.blue = (int) (Math.random() * (100 - 10)) + 10;
+
+            temp.probaAttaque= (int) (Math.random() * 2550);
+            temp.endurance=temp.red*10;
+            temp.enduranceRestante=temp.endurance;
+
+
             Stockage.predateurs.add(temp);
         }
     }

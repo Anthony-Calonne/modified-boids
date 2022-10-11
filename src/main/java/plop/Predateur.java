@@ -1,6 +1,10 @@
 package plop;
 
 public class Predateur {
+    public boolean attaque=false;
+    public int probaAttaque;
+    public double endurance;
+    public double enduranceRestante;
     public Vec getDirection() {
         return direction;
     }

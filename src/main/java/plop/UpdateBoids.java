@@ -47,6 +47,26 @@ public class UpdateBoids {
                 temp.border=(int)Stockage.porteeVisuPreda;
             } else if (temp.border<0){
                 temp.setDirection((View.viewPreda(temp.localisation,temp.direction)));
+                if (temp.attaque){
+                    for (int y = 0; y<10; y++){
+                        temp.enduranceRestante--;
+                    }
+                    if (temp.enduranceRestante<0){
+                        temp.attaque=false;
+                        temp.enduranceRestante=temp.endurance;
+                    }
+                } else {
+                    for (int y = 0; y<10; y++){
+                        temp.enduranceRestante--;
+                    }
+                    if (temp.enduranceRestante<0){
+                        temp.enduranceRestante=temp.endurance;
+                        double y=(Math.random() * 256);
+                        if (y>temp.probaAttaque){
+                            temp.attaque=true;
+                        }
+                    }
+                }
             } else{
                 temp.border--;
             }

@@ -53,10 +53,8 @@ public class View {
                 proiesRepro(localisation, locaTemp, direction, dirTemp, greenOne, blueOne, temp.getGreen(), temp.getBlue());
                 int nbProies2 = Stockage.proies.size();
                 if (nbProies2>nbProies){
-                    System.out.println(temp.nombreReproRestantes + " et " + Stockage.proies.get(rangM).nombreReproRestantes);
                     Stockage.proies.get(rangM).nombreReproRestantes--;
                     temp.nombreReproRestantes--;
-                    System.out.println(temp.nombreReproRestantes + " et " + Stockage.proies.get(rangM).nombreReproRestantes);
                 }
             }
         }
