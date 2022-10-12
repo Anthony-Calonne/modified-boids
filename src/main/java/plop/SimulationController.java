@@ -14,6 +14,7 @@ import org.controlsfx.tools.Platform;
 
 import java.awt.event.MouseEvent;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -46,6 +47,8 @@ public class SimulationController implements Initializable {
     double mouseY;
     double lastMouseY = mouseY;
     double lastMouseX = mouseX;
+
+
     double previousLastMouseY = lastMouseY;
     double previousLastMouseX = lastMouseX;
     Color backGroundColor = Color.rgb(40,80,120);
@@ -76,7 +79,7 @@ public class SimulationController implements Initializable {
             gc.strokeRect(x,y,3,3);
             gc.fillRect(x,y,3,3);
         }
-        for (int i=0; i<Stockage.nombrePredateurs;i++){
+        for (int i=0; i<Stockage.predateurs.size();i++){
             Predateur temp = Stockage.predateurs.get(i);
             double lateX = temp.getPreviousX();
             double lateY= temp.getPreviousY();
@@ -134,10 +137,35 @@ public class SimulationController implements Initializable {
                 }
                 couleurPredaActu.setFill(updateColor(1));
                 couleurProieActu.setFill(updateColor(0));
+                killPredators();
+                if (Stockage.predateursMorts.size()!=0){
+                    cleanPredators();
+                }
             }
         };
         timer.scheduleAtFixedRate(task,50,50);
 
+    }
+
+    public ArrayList<Vec> cleaningList = new ArrayList<Vec>();
+    public void killPredators(){
+        for (int i = 0; i<Stockage.predateursMorts.size();i++ ){
+            cleaningList.add(Stockage.predateurs.get(i).getLocalisation());
+            Stockage.predateurs.remove(i);
+        }
+
+    }
+    public void cleanPredators(){
+        gc.setStroke(backGroundColor);
+        gc.setFill(backGroundColor);
+        for(int i= 0; i< Stockage.predateursMorts.size();i++){
+            gc.setStroke(backGroundColor);
+            gc.setFill(backGroundColor);
+            gc.strokeRect(cleaningList.get(i).x-2,cleaningList.get(i).y,6,6);
+            gc.fillRect(cleaningList.get(i).x - 2, cleaningList.get(i).y - 2, 6, 6);
+        }
+        Stockage.predateursMorts.clear();
+        cleaningList.clear();
     }
 
     public Color updateColor(int i){
@@ -191,7 +219,7 @@ public class SimulationController implements Initializable {
             gc.strokeRect(Stockage.proies.get(i).getLocalisation().x,Stockage.proies.get(i).getLocalisation().y,2,2);
         }
         gc.setStroke(Color.rgb(250,50,50));
-        for (int i = 0;i<Stockage.nombrePredateurs;i++ ){
+        for (int i = 0;i<Stockage.predateurs.size();i++ ){
             gc.strokeRect(Stockage.predateurs.get(i).getLocalisation().x,Stockage.predateurs.get(i).getLocalisation().y,2,2);
         }
         couleurProieInit.setFill(updateColor(0));

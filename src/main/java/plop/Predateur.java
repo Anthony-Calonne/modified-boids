@@ -2,6 +2,7 @@ package plop;
 
 public class Predateur {
     public boolean attaque=false;
+    public int nourriture = 3;
     public int probaAttaque;
     public double endurance;
     public double enduranceRestante;

@@ -28,6 +28,7 @@ public class Stockage {
     static double vitessePreda;
     static ArrayList<Proie> proies = new ArrayList<>();
     static ArrayList<Predateur> predateurs = new ArrayList<>();
+    static ArrayList<Integer> predateursMorts = new ArrayList<Integer>();
     static int vitessePredateurs = 1;
 
     static GraphicsContext gc;

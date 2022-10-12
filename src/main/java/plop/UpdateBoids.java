@@ -53,6 +53,7 @@ public class UpdateBoids {
                     }
                     if (temp.enduranceRestante<0){
                         temp.attaque=false;
+                        temp.nourriture--;
                         temp.enduranceRestante=temp.endurance;
                     }
                 } else {
@@ -70,9 +71,13 @@ public class UpdateBoids {
             } else{
                 temp.border--;
             }
+            if (temp.nourriture==0){
+                Stockage.predateursMorts.add(i);
+            }
 
 
         }
+
         return null;
     }
     public static void recentrer(Vec localisation, Vec direction, Vec centre){
