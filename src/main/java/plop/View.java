@@ -130,7 +130,7 @@ public class View {
         return direction;
 
     }
-    public static Vec viewPreda(Vec localisation,Vec direction){
+    public static Vec viewPreda(Vec localisation,Vec direction, int rang){
 
         //Initialisation des variables
 
@@ -143,20 +143,46 @@ public class View {
         Vec sepa=new Vec(0,0);
         Vec ali=new Vec(0,0);
         Vec cohe = new Vec(0,0);
+        Predateur predateur = Stockage.predateurs.get(rang);
 
-        for(int i=0;i<Stockage.predateurs.size();i++){
-            Predateur temp = Stockage.predateurs.get(i);
+        if(predateur.attaque){      //si le prédateur est en phase d'attaque
+            if (predateur.rangProieSuivie<0){       //s'il ne suit pas de proie, on compare toutes les proies visibles et il mémorise la plus proche. Ce rang est oublié à chaque début d'initiation du cycle global de chasse.
+                double tempLongueur = 100000;
+                int tempRang = Stockage.predateurs.get(rang).rangProieSuivie;
+                for (int i = 0; i < Stockage.proies.size(); i++) {
+                    Proie temp = Stockage.proies.get(i);
+                    Vec locaTemp = temp.localisation;
+                    double distanceBoids = Vec.dist(localisation, locaTemp);
+                    if (distanceBoids < porteeVisu && distanceBoids != 0){
+                        if (distanceBoids<tempLongueur){
+                            tempLongueur=tempLongueur;
+                            tempRang=i;
+                        }
+                    }
+                }
+                Stockage.predateurs.get(rang).rangProieSuivie=tempRang;
+                System.out.println(tempRang);
+            } else {        // s'il suit une proie
+                ali.x+=Stockage.proies.get(predateur.rangProieSuivie).localisation.x-predateur.localisation.x;
+                ali.y+=Stockage.proies.get(predateur.rangProieSuivie).localisation.y-predateur.localisation.y;
+                cohe.x+=Stockage.proies.get(predateur.rangProieSuivie).direction.x;
+                cohe.y+=Stockage.proies.get(predateur.rangProieSuivie).direction.y;
+            }
+
+        }else {
+            for (int i = 0; i < Stockage.predateurs.size(); i++) {
+                Predateur temp = Stockage.predateurs.get(i);
                 Vec locaTemp = temp.localisation;
                 Vec dirTemp = temp.direction;
                 double distanceBoids = Vec.dist(localisation, locaTemp);
-                if (distanceBoids < porteeVisu &&distanceBoids!=0) { //Si le boid peut voir l'autre :
+                if (distanceBoids < porteeVisu && distanceBoids != 0) { //Si le boid peut voir l'autre :
                     // 1) Si il est proche alors il s'en éloigne
                     if (distanceBoids < separation) {
                         sepa.x += localisation.x - locaTemp.x;
                         sepa.y += localisation.y - locaTemp.y;
 
                     }
-                    if (distanceBoids < alignement && temp.border==0) {
+                    if (distanceBoids < alignement && temp.border == 0) {
                         ali.x += localisation.x - locaTemp.x;
                         ali.y += localisation.y - locaTemp.y;
                     }
@@ -166,6 +192,7 @@ public class View {
                     }
 
                     // Ajout de la fonction de reproduction
+                }
             }
         }
 

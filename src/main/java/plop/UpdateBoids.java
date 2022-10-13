@@ -46,7 +46,7 @@ public class UpdateBoids {
                 recentrer(temp.localisation,temp.direction,centreFenetre);
                 temp.border=(int)Stockage.porteeVisuPreda;
             } else if (temp.border<0){
-                temp.setDirection((View.viewPreda(temp.localisation,temp.direction)));
+                temp.setDirection((View.viewPreda(temp.localisation,temp.direction,i)));
                 if (temp.attaque){
                     for (int y = 0; y<10; y++){
                         temp.enduranceRestante--;
@@ -65,6 +65,7 @@ public class UpdateBoids {
                         double y=(Math.random() * 256);
                         if (y>temp.probaAttaque){
                             temp.attaque=true;
+                            temp.rangProieSuivie=-1;
                         }
                     }
                 }
