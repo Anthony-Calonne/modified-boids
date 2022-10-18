@@ -139,6 +139,9 @@ public class SimulationController implements Initializable {
                 couleurPredaActu.setFill(updateColor(1));
                 couleurProieActu.setFill(updateColor(0));
                 killPredators();
+                if (cleaningList2.size()>0){
+                    cleanPreys();
+                }
                 if (Stockage.predateursMorts.size()!=0){
                     cleanPredators();
                 }
@@ -148,7 +151,9 @@ public class SimulationController implements Initializable {
 
     }
 
+
     public ArrayList<Vec> cleaningList = new ArrayList<Vec>();
+    public ArrayList<Vec> cleaningList2 = new ArrayList<Vec>();
     public void killPredators(){
         for (int i = 0; i<Stockage.predateursMorts.size();i++ ){
             cleaningList.add(Stockage.predateurs.get(i).getLocalisation());
@@ -158,16 +163,23 @@ public class SimulationController implements Initializable {
     }
     public void killPreys(){
         for (int i = 0; i<Stockage.localisationProiesTuees.size();i++ ){
-            cleaningList.add(Stockage.localisationProiesTuees.get(i));
-            Stockage.localisationProiesTuees.remove(i);
+            cleaningList2.add(Stockage.localisationProiesTuees.get(i));
         }
+        Stockage.localisationProiesTuees.clear();
+    }
+    public void cleanPreys(){
+        gc.setStroke(backGroundColor);
+        gc.setFill(backGroundColor);
+        for (int i=0;i<cleaningList2.size();i++){
+            gc.strokeRect(cleaningList2.get(i).x-2,cleaningList2.get(i).y,6,6);
+            gc.fillRect(cleaningList2.get(i).x - 2, cleaningList2.get(i).y - 2, 6, 6);
+        }
+        cleaningList2.clear();
     }
     public void cleanPredators(){
         gc.setStroke(backGroundColor);
         gc.setFill(backGroundColor);
         for(int i= 0; i< Stockage.predateursMorts.size();i++){
-            gc.setStroke(backGroundColor);
-            gc.setFill(backGroundColor);
             gc.strokeRect(cleaningList.get(i).x-2,cleaningList.get(i).y,6,6);
             gc.fillRect(cleaningList.get(i).x - 2, cleaningList.get(i).y - 2, 6, 6);
         }
