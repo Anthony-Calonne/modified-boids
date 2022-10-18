@@ -33,6 +33,8 @@ public class InitializeBoids {
             temp.blue = (int) (Math.random() * (100 - 10)) + 10;
             temp.previousX=0;
             temp.previousY=0;
+            temp.attaquesSubies=0;
+            temp.attaquesSupportees=Math.random()*2000;
             Stockage.proies.add(temp);
 
 

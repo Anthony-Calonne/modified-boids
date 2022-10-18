@@ -5,7 +5,7 @@ import static java.lang.Math.sqrt;
 
 public class View {
 
-    public static Vec viewProies(Vec localisation,Vec direction,int greenOne,int blueOne,int nombreReproM,int rangM){
+    public static Vec viewProies(Vec localisation,Vec direction,int greenOne,int blueOne,int nombreReproM,int rangM, double attaquesSupportees){
 
         //Initialisation des variables
 
@@ -50,7 +50,7 @@ public class View {
             double distanceBoids = Vec.dist(localisation, locaTemp);
             if(sepa.x==0&&sepa.y==0&& distanceBoids<porteeVisu && nombreReproM>0 && temp.nombreReproRestantes>0){        //ajouter la descendance possible par boid
                 int nbProies = Stockage.proies.size();
-                proiesRepro(localisation, locaTemp, direction, dirTemp, greenOne, blueOne, temp.getGreen(), temp.getBlue());
+                proiesRepro(localisation, locaTemp, direction, dirTemp, greenOne, blueOne, temp.getGreen(), temp.getBlue(),temp.attaquesSupportees,attaquesSupportees);
                 int nbProies2 = Stockage.proies.size();
                 if (nbProies2>nbProies){
                     Stockage.proies.get(rangM).nombreReproRestantes--;
@@ -161,12 +161,12 @@ public class View {
                     }
                 }
                 Stockage.predateurs.get(rang).rangProieSuivie=tempRang;
-                System.out.println(tempRang);
             } else {        // s'il suit une proie
                 ali.x+=Stockage.proies.get(predateur.rangProieSuivie).localisation.x-predateur.localisation.x;
                 ali.y+=Stockage.proies.get(predateur.rangProieSuivie).localisation.y-predateur.localisation.y;
                 cohe.x+=Stockage.proies.get(predateur.rangProieSuivie).direction.x;
                 cohe.y+=Stockage.proies.get(predateur.rangProieSuivie).direction.y;
+                attaque(Stockage.predateurs.get(rang).rangProieSuivie,rang);
             }
 
         }else {
@@ -235,9 +235,37 @@ public class View {
         return direction;
     }
 
+    public static void tuerProie(int rang){
+        Stockage.localisationProiesTuees.add(Stockage.proies.get(rang).localisation);
+        Stockage.proies.remove(rang);
+        Stockage.nombreProies--;
+        for (int i=0;i<Stockage.predateurs.size();i++){
+            if (Stockage.predateurs.get(i).rangProieSuivie>rang){
+                Stockage.predateurs.get(i).rangProieSuivie--;
+            } else if (Stockage.predateurs.get(i).rangProieSuivie==rang){
+                Stockage.predateurs.get(i).rangProieSuivie=-1;
+            }
+        }
+    }
 
-
-
+    public static void attaque(int rangProie, int rangPredateur){
+        double degatsPreda = Stockage.degatsPreda;
+        Predateur predateur=Stockage.predateurs.get(rangPredateur);
+        Proie proie = Stockage.proies.get(rangProie);
+        Vec locaPreda=predateur.localisation;
+        Vec locaProie=proie.localisation;
+        double degatsProie = 0;
+        double distance=Vec.dist(locaPreda,locaProie);
+        if (distance<Stockage.porteeVisuPreda){
+            if (distance>1){
+                degatsProie=degatsPreda/distance;
+            }
+        }
+        Stockage.proies.get(rangProie).attaquesSubies+=degatsProie;
+        if (Stockage.proies.get(rangProie).attaquesSupportees<Stockage.proies.get(rangProie).attaquesSubies){
+            tuerProie(rangProie);
+        }
+    }
 
 
 
@@ -245,7 +273,7 @@ public class View {
 
     //Systèmes de reproduction
 
-    public static void proiesRepro(Vec localisation, Vec locaTemp, Vec directionP, Vec directionM,int greenOne,int greenTwo,int blueOne,int blueTwo){
+    public static void proiesRepro(Vec localisation, Vec locaTemp, Vec directionP, Vec directionM,int greenOne,int greenTwo,int blueOne,int blueTwo, double attaqueSupOne, double attaqueSupTwo){
         float proba = (float)Math.random() * (100 - 0) + 0;
 
         Vec sepa=new Vec(0,0);

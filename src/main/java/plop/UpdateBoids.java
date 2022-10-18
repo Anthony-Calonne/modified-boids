@@ -26,7 +26,7 @@ public class UpdateBoids {
                 recentrer(temp.localisation,temp.direction,centreFenetre);
                 temp.border=(int)Stockage.porteeVisuProies;
             } else if (temp.border<0){
-                temp.setDirection((View.viewProies(temp.localisation,temp.direction,temp.getGreen(),temp.getBlue(),temp.nombreReproRestantes,i)));
+                temp.setDirection((View.viewProies(temp.localisation,temp.direction,temp.getGreen(),temp.getBlue(),temp.nombreReproRestantes,i, temp.attaquesSupportees)));
                 View.flee(temp.localisation,temp.direction);
             } else{
                 temp.border--;

@@ -11,7 +11,8 @@ public class Proie {
 
     public double previousX;
     public double previousY;
-
+    public double attaquesSupportees;
+    public double attaquesSubies;
 
 
 

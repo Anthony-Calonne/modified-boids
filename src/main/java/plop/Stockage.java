@@ -26,6 +26,8 @@ public class Stockage {
     static double alignementPreda;
     static double porteeVisuPreda;
     static double vitessePreda;
+    static double degatsPreda = 100;
+    static ArrayList<Vec> localisationProiesTuees = new ArrayList<>();
     static ArrayList<Proie> proies = new ArrayList<>();
     static ArrayList<Predateur> predateurs = new ArrayList<>();
     static ArrayList<Integer> predateursMorts = new ArrayList<Integer>();

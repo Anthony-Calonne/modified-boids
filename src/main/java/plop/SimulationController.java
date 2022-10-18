@@ -131,6 +131,7 @@ public class SimulationController implements Initializable {
                 drawBoids(gc);
                 updateDataSet();
                 updateShownData();
+                killPreys();
                 if (Stockage.WindowClosed==0){
                     timer.cancel();
                     timer.purge();
@@ -155,6 +156,12 @@ public class SimulationController implements Initializable {
         }
 
     }
+    public void killPreys(){
+        for (int i = 0; i<Stockage.localisationProiesTuees.size();i++ ){
+            cleaningList.add(Stockage.localisationProiesTuees.get(i));
+            Stockage.localisationProiesTuees.remove(i);
+        }
+    }
     public void cleanPredators(){
         gc.setStroke(backGroundColor);
         gc.setFill(backGroundColor);
@@ -168,7 +175,7 @@ public class SimulationController implements Initializable {
         cleaningList.clear();
     }
 
-    public Color updateColor(int i){
+    public Color updateColor(int i){        //met à jour les couleurs du FXML
         Color color = null;
         if (i==1){
             int red=0;
