@@ -236,7 +236,9 @@ public class View {
     }
 
     public static void tuerProie(int rang){
-        Stockage.localisationProiesTuees.add(Stockage.proies.get(rang).localisation);
+        Vec locaProie = Stockage.proies.get(rang).localisation;
+        Stockage.localisationProiesTuees.add(locaProie);
+        nourrirPreda(locaProie);
         Stockage.proies.remove(rang);
         Stockage.nombreProies--;
         for (int i=0;i<Stockage.predateurs.size();i++){
@@ -244,6 +246,14 @@ public class View {
                 Stockage.predateurs.get(i).rangProieSuivie--;
             } else if (Stockage.predateurs.get(i).rangProieSuivie==rang){
                 Stockage.predateurs.get(i).rangProieSuivie=-1;
+            }
+        }
+    }
+    public static void nourrirPreda(Vec locaProie){
+        for (int i = 0; i<Stockage.predateurs.size();i++){
+            double distance = Vec.dist(locaProie,Stockage.predateurs.get(i).localisation);
+            if (distance<Stockage.distanceNutritionPreda){
+                Stockage.predateurs.get(i).nourriture++;
             }
         }
     }
