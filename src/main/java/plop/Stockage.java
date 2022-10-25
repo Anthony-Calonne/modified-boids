@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Stockage {
     public static boolean traces=true;
     public static int WindowClosed=1;
+    public static int competiteursToleres = 5;
     static double degatsPreda = 500;
     static double distanceNutritionPreda = 20;
 

@@ -144,7 +144,7 @@ public class View {
         Vec ali=new Vec(0,0);
         Vec cohe = new Vec(0,0);
         Predateur predateur = Stockage.predateurs.get(rang);
-
+        predateur.competiteurs=0;
         if(predateur.attaque){      //si le prédateur est en phase d'attaque
             if (predateur.rangProieSuivie<0){       //s'il ne suit pas de proie, on compare toutes les proies visibles et il mémorise la plus proche. Ce rang est oublié à chaque début d'initiation du cycle global de chasse.
                 double tempLongueur = 100000;
@@ -180,6 +180,7 @@ public class View {
                 Vec dirTemp = temp.direction;
                 double distanceBoids = Vec.dist(localisation, locaTemp);
                 if (distanceBoids < porteeVisu && distanceBoids != 0) { //Si le boid peut voir l'autre :
+                    predateur.competiteurs++;
                     if (predateur.reproPossible==1){        //si la reproduction est possible pour 1
                         if (predateur.tempsDepuisReproPossible==Stockage.tempsReproPredateurs){
                             predateur.tempsDepuisReproPossible=0;

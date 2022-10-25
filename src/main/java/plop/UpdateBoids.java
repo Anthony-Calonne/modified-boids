@@ -63,7 +63,7 @@ public class UpdateBoids {
                     if (temp.enduranceRestante<0){
                         temp.enduranceRestante=temp.endurance;
                         double y=(Math.random() * 256);
-                        if (y>temp.probaAttaque){
+                        if (y>temp.probaAttaque && temp.competiteurs<Stockage.competiteursToleres){
                             temp.attaque=true;
                             temp.rangProieSuivie=-1;
                         }

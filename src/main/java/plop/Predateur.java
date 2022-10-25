@@ -1,6 +1,7 @@
 package plop;
 
 public class Predateur {
+    int competiteurs=0;
     public boolean attaque=false;
     public int rangProieSuivie=-1;
     public int reproPossible=0;
