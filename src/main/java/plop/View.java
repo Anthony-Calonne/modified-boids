@@ -186,7 +186,6 @@ public class View {
                             predateur.reproPossible=0;
                         }else if (temp.reproPossible == 1) {      //si la reproduction est possible pour 2
                             predaRepro(temp, predateur);
-                            System.out.println("repro!");
                             predateur.reproPossible = 0;
                             temp.reproPossible = 0;
                             predateur.tempsDepuisReproPossible = 0;
@@ -294,11 +293,12 @@ public class View {
             }
         }
     }
-    public static void nourrirPreda(Vec locaProie){
+    public static void nourrirPreda(Vec locaProie){     //nourriture et culture
         for (int i = 0; i<Stockage.predateurs.size();i++){
             double distance = Vec.dist(locaProie,Stockage.predateurs.get(i).localisation);
             if (distance<Stockage.distanceNutritionPreda){
                 Stockage.predateurs.get(i).nourriture++;
+                Stockage.predateurs.get(i).probaAttaque=(Stockage.predateurs.get(i).probaAttaque+Stockage.predaDataACopier)/2;
             }
         }
     }
@@ -318,6 +318,7 @@ public class View {
         }
         Stockage.proies.get(rangProie).attaquesSubies+=degatsProie;
         if (Stockage.proies.get(rangProie).attaquesSupportees<Stockage.proies.get(rangProie).attaquesSubies){
+            Stockage.predaDataACopier=predateur.probaAttaque;
             tuerProie(rangProie);
         }
     }
@@ -332,7 +333,7 @@ public class View {
         float proba = (float)Math.random() * (100 - 0) + 0;
 
         Vec sepa=new Vec(0,0);
-        if (proba>99.9 && Stockage.proies.size()<300){
+        if (proba>99.9 && Stockage.proies.size()<Stockage.maxProies){
             Proie littleOne= new Proie();
             double x = (localisation.x+ locaTemp.x)/2;
             double y = (localisation.y+ locaTemp.y)/2;

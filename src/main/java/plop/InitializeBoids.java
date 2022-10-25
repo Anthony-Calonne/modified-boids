@@ -60,6 +60,7 @@ public class InitializeBoids {
 
             temp.previousX=0;
             temp.previousY=0;
+            temp.nourriture = (int) (Math.random() * (5 - 3) + 3);
             temp.red = (int) (Math.random() * (255 - 90) + 90);
             temp.blue = (int) (Math.random() * (100 - 10)) + 10;
 

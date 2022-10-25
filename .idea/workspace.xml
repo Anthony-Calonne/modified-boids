@@ -11,10 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2020a337-f710-46d8-a51f-a0674021aaaa" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/plop/Predateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/Predateur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/plop/InitializeBoids.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/InitializeBoids.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/plop/Stockage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/Stockage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/plop/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/View.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/plop/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

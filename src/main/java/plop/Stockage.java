@@ -8,8 +8,12 @@ import java.util.ArrayList;
 public class Stockage {
     public static boolean traces=true;
     public static int WindowClosed=1;
+    static double degatsPreda = 500;
+    static double distanceNutritionPreda = 20;
+
     public static int nourritureNecessairePredateurs = 3;
     public static int tempsReproPredateurs=1000;
+    public static int maxProies=1500;
     static int iteration = 0;
     static double fear = 1;
 
@@ -28,8 +32,7 @@ public class Stockage {
     static double alignementPreda;
     static double porteeVisuPreda;
     static double vitessePreda;
-    static double degatsPreda = 400;
-    static double distanceNutritionPreda = 20;
+    static int predaDataACopier;
     static ArrayList<Vec> localisationProiesTuees = new ArrayList<>();
     static ArrayList<Proie> proies = new ArrayList<>();
     static ArrayList<Predateur> predateurs = new ArrayList<>();
