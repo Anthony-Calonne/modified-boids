@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="modified-boids.main">
+    <output-path>$PROJECT_DIR$/../../Code/Boids</output-path>
+    <root id="root">
+      <element id="archive" name="modified_boids_main.jar">
+        <element id="module-output" name="modified-boids.main" />
+      </element>
+    </root>
+  </artifact>
+</component>

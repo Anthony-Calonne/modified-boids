@@ -3,6 +3,8 @@ package plop;
 public class Predateur {
     public boolean attaque=false;
     public int rangProieSuivie=-1;
+    public int reproPossible=0;
+    public int tempsDepuisReproPossible=0;
     public int nourriture = 3;
     public int probaAttaque;
     public double endurance;

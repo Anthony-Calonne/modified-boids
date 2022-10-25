@@ -1,18 +1,15 @@
 package plop;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class main extends Application {
 
@@ -20,7 +17,7 @@ public class main extends Application {
     private Stage stage;
     private Parent root;
 
-    public static void main(String args[]){
+    public static void main(String[] args){
         Application.launch(args);
     }
 

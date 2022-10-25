@@ -170,12 +170,35 @@ public class View {
             }
 
         }else {
+            if(predateur.nourriture>3&&predateur.reproPossible==0){
+                predateur.nourriture--;
+                predateur.reproPossible++;
+            }
             for (int i = 0; i < Stockage.predateurs.size(); i++) {
                 Predateur temp = Stockage.predateurs.get(i);
                 Vec locaTemp = temp.localisation;
                 Vec dirTemp = temp.direction;
                 double distanceBoids = Vec.dist(localisation, locaTemp);
                 if (distanceBoids < porteeVisu && distanceBoids != 0) { //Si le boid peut voir l'autre :
+                    if (predateur.reproPossible==1){        //si la reproduction est possible pour 1
+                        if (predateur.tempsDepuisReproPossible==Stockage.tempsReproPredateurs){
+                            predateur.tempsDepuisReproPossible=0;
+                            predateur.reproPossible=0;
+                        }else if (temp.reproPossible == 1) {      //si la reproduction est possible pour 2
+                            predaRepro(temp, predateur);
+                            System.out.println("repro!");
+                            predateur.reproPossible = 0;
+                            temp.reproPossible = 0;
+                            predateur.tempsDepuisReproPossible = 0;
+                            temp.tempsDepuisReproPossible = 0;
+                        }
+                    }else{
+                        if(predateur.nourriture>Stockage.nourritureNecessairePredateurs){
+                            predateur.rangProieSuivie=1;
+                            predateur.tempsDepuisReproPossible=0;
+                        }
+                    }
+
                     // 1) Si il est proche alors il s'en éloigne
                     if (distanceBoids < separation) {
                         sepa.x += localisation.x - locaTemp.x;
@@ -193,6 +216,9 @@ public class View {
 
                     // Ajout de la fonction de reproduction
                 }
+            }
+            if (predateur.reproPossible==1){
+                predateur.tempsDepuisReproPossible++;
             }
         }
 
@@ -233,6 +259,25 @@ public class View {
         direction.div(directionLength);
 
         return direction;
+    }
+
+    private static void predaRepro(Predateur temp, Predateur predateur) {
+        Predateur littleOne = new Predateur();
+        double x = (temp.localisation.x+ predateur.localisation.x)/2;
+        double y = (temp.localisation.y+ predateur.localisation.y)/2;
+        littleOne.localisation=new Vec(x,y);
+
+        double xVise= (predateur.direction.x+temp.direction.x)/2;
+        double yVise= (predateur.direction.y+temp.direction.y)/2;
+        littleOne.direction=new Vec(xVise,yVise);
+
+        littleOne.red=(temp.red+predateur.red)/2;
+        littleOne.blue=(temp.blue+predateur.blue)/2;
+
+        littleOne.probaAttaque= (int) (Math.random() * 2550);
+        littleOne.endurance=littleOne.red*10;
+        littleOne.enduranceRestante= littleOne.endurance;
+        Stockage.predateurs.add(littleOne);
     }
 
     public static void tuerProie(int rang){
