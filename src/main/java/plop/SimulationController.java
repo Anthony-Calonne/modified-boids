@@ -1,5 +1,8 @@
 package plop;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -10,14 +13,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import org.controlsfx.tools.Platform;
+import javafx.util.Duration;
 
-import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class SimulationController implements Initializable {
 
@@ -122,33 +122,26 @@ public class SimulationController implements Initializable {
         InitializeBoids.Initialize(Stockage.nombreProies, Stockage.nombrePredateurs);
         drawInitiation(gc);
         drawBoids(gc);
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                Stockage.nombreProies=Stockage.proies.size();
-                UpdateBoids.update();
-                drawBoids(gc);
-                updateDataSet();
-                updateShownData();
-                killPreys();
-                if (Stockage.WindowClosed==0){
-                    timer.cancel();
-                    timer.purge();
-                }
-                couleurPredaActu.setFill(updateColor(1));
-                couleurProieActu.setFill(updateColor(0));
-                killPredators();
-                if (cleaningList2.size()>0){
-                    cleanPreys();
-                }
-                if (Stockage.predateursMorts.size()!=0){
-                    cleanPredators();
-                }
-            }
-        };
-        timer.scheduleAtFixedRate(task,50,50);
 
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50),e ->{
+            Stockage.nombreProies=Stockage.proies.size();
+            UpdateBoids.update();
+            drawBoids(gc);
+            updateDataSet();
+            updateShownData();
+            killPreys();
+            couleurPredaActu.setFill(updateColor(1));
+            couleurProieActu.setFill(updateColor(0));
+            killPredators();
+            if (cleaningList2.size()>0){
+                cleanPreys();
+            }
+            if (Stockage.predateursMorts.size()!=0){
+                cleanPredators();
+            }
+        } ));
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
 
