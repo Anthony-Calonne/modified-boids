@@ -150,7 +150,7 @@ public class SimulationController implements Initializable {
     public void killPredators(){
         for (int i = 0; i<Stockage.predateursMorts.size();i++ ){
             cleaningList.add(Stockage.predateurs.get(i).getLocalisation());
-            Stockage.predateurs.remove(i);
+            Stockage.predateurs.remove(Stockage.predateursMorts.get(i));
         }
 
     }
@@ -182,7 +182,7 @@ public class SimulationController implements Initializable {
 
     public Color updateColor(int i){        //met à jour les couleurs du FXML
         Color color = null;
-        if (i==1){
+        if (i==1 && Stockage.predateurs.size()!=0){
             int red=0;
             int blue=0;
             for (int y=0;y<Stockage.predateurs.size();y++){

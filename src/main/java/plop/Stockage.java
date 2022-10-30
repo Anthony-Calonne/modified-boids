@@ -14,7 +14,7 @@ public class Stockage {
 
     public static int nourritureNecessairePredateurs = 3;
     public static int tempsReproPredateurs=800;
-    public static int maxProies=800;
+    public static int maxProies=1500;
     static int iteration = 0;
     static double fear = 1;
 

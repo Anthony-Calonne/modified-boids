@@ -170,17 +170,21 @@ public class View {
             }
 
         }else {
-            if(predateur.nourriture>3&&predateur.reproPossible==0){
+            if(predateur.nourriture>5&&predateur.reproPossible==0){
                 predateur.nourriture--;
                 predateur.reproPossible++;
             }
             for (int i = 0; i < Stockage.predateurs.size(); i++) {
+                double follower = 1;
                 Predateur temp = Stockage.predateurs.get(i);
+                if (temp.attaque){
+                    follower=3;
+                }
                 Vec locaTemp = temp.localisation;
                 Vec dirTemp = temp.direction;
                 double distanceBoids = Vec.dist(localisation, locaTemp);
                 if (distanceBoids < porteeVisu && distanceBoids != 0) { //Si le boid peut voir l'autre :
-                    predateur.competiteurs++;
+                    predateur.competiteurs++;       //compte le nombre de competiteurs
                     if (predateur.reproPossible==1){        //si la reproduction est possible pour 1
                         if (predateur.tempsDepuisReproPossible==Stockage.tempsReproPredateurs){
                             predateur.tempsDepuisReproPossible=0;
@@ -198,7 +202,7 @@ public class View {
                             predateur.tempsDepuisReproPossible=0;
                         }
                     }
-
+                    //fonctions de direction
                     // 1) Si il est proche alors il s'en éloigne
                     if (distanceBoids < separation) {
                         sepa.x += localisation.x - locaTemp.x;
@@ -209,9 +213,9 @@ public class View {
                         ali.x += localisation.x - locaTemp.x;
                         ali.y += localisation.y - locaTemp.y;
                     }
-                    if (distanceBoids < coherence) {
-                        cohe.x += dirTemp.x;
-                        cohe.y += dirTemp.y;
+                    if (distanceBoids < coherence) {        //multiplication ici sur la cohérence des direction si l'autre prédateur chasse
+                        cohe.x += dirTemp.x*follower;
+                        cohe.y += dirTemp.y*follower;
                     }
 
                     // Ajout de la fonction de reproduction
@@ -297,7 +301,7 @@ public class View {
     public static void nourrirPreda(Vec locaProie){     //nourriture et culture
         for (int i = 0; i<Stockage.predateurs.size();i++){
             double distance = Vec.dist(locaProie,Stockage.predateurs.get(i).localisation);
-            if (distance<Stockage.distanceNutritionPreda){
+            if (distance<Stockage.porteeVisuPreda){
                 Stockage.predateurs.get(i).nourriture++;
                 Stockage.predateurs.get(i).probaAttaque=(Stockage.predateurs.get(i).probaAttaque+Stockage.predaDataACopier)/2;
             }
@@ -314,7 +318,9 @@ public class View {
         double distance=Vec.dist(locaPreda,locaProie);
         if (distance<Stockage.porteeVisuPreda){
             if (distance>1){
-                degatsProie=degatsPreda/distance;
+                degatsProie=(degatsPreda/distance)*(predateur.red/255)*(proie.green/255);
+            } else{
+                degatsProie=degatsPreda*2;
             }
         }
         Stockage.proies.get(rangProie).attaquesSubies+=degatsProie;

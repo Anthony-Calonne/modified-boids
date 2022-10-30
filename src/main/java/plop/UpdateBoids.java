@@ -39,7 +39,8 @@ public class UpdateBoids {
             temp = Stockage.predateurs.get(i);
             temp.previousX= temp.getLocalisation().x;
             temp.previousY=temp.getLocalisation().y;
-            temp.localisation.add(temp.getDirection());
+            temp.localisation.x+=(temp.direction.x*temp.vitesse);
+            temp.localisation.y+=(temp.direction.y*temp.vitesse);
             Vec loca=temp.localisation;
 
             if (loca.x<border || loca.x>Stockage.windowWidth-border||loca.y<border||loca.y>Stockage.windowHeight-border){
@@ -53,6 +54,7 @@ public class UpdateBoids {
                     }
                     if (temp.enduranceRestante<0){
                         temp.attaque=false;
+                        temp.vitesse=1;
                         temp.nourriture--;
                         temp.enduranceRestante=temp.endurance;
                     }
@@ -65,6 +67,7 @@ public class UpdateBoids {
                         double y=(Math.random() * 256);
                         if (y>temp.probaAttaque && temp.competiteurs<Stockage.competiteursToleres){
                             temp.attaque=true;
+                            temp.vitesse=1.5;
                             temp.rangProieSuivie=-1;
                         }
                     }
