@@ -38,7 +38,7 @@ public class UpdateBoids {
 
         for (int i=0;i<Stockage.predateurs.size();i++){  //Prédateurs
             Predateur temp;
-            Stockage.predateurs.get(i).PV--;
+            Stockage.predateurs.get(i).PV=(Stockage.predateurs.get(i).PV-1)-((1/Stockage.predateurs.get(i).nourriture)*5)-(2*Stockage.predateurs.size()/Stockage.proies.size());
             temp = Stockage.predateurs.get(i);
             temp.previousX= temp.getLocalisation().x;
             temp.previousY=temp.getLocalisation().y;
