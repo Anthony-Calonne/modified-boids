@@ -11,6 +11,8 @@ public class Proie {
 
     public double previousX;
     public double previousY;
+    public double PVinit;
+    public double PV;
     public double attaquesSupportees;
     public double attaquesSubies;
 

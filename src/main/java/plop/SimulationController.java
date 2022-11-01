@@ -122,7 +122,6 @@ public class SimulationController implements Initializable {
         InitializeBoids.Initialize(Stockage.nombreProies, Stockage.nombrePredateurs);
         drawInitiation(gc);
         drawBoids(gc);
-
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50),e ->{
             Stockage.nombreProies=Stockage.proies.size();
             UpdateBoids.update();
@@ -151,6 +150,11 @@ public class SimulationController implements Initializable {
         for (int i = 0; i<Stockage.predateursMorts.size();i++ ){
             cleaningList.add(Stockage.predateurs.get(i).getLocalisation());
             Stockage.predateurs.remove(Stockage.predateursMorts.get(i));
+            for(int y = 0;y<Stockage.predateursMorts.size();y++){
+                if (Stockage.predateursMorts.get(y)>i){
+                    Stockage.predateursMorts.set(y,Stockage.predateursMorts.get(y)-1);
+                }
+            }
         }
 
     }
@@ -182,7 +186,7 @@ public class SimulationController implements Initializable {
 
     public Color updateColor(int i){        //met à jour les couleurs du FXML
         Color color = null;
-        if (i==1 && Stockage.predateurs.size()!=0){
+        if (i==1&&Stockage.predateurs.size()!=0){
             int red=0;
             int blue=0;
             for (int y=0;y<Stockage.predateurs.size();y++){

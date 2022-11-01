@@ -26,16 +26,19 @@ public class UpdateBoids {
                 recentrer(temp.localisation,temp.direction,centreFenetre);
                 temp.border=(int)Stockage.porteeVisuProies;
             } else if (temp.border<0){
-                temp.setDirection((View.viewProies(temp.localisation,temp.direction,temp.getGreen(),temp.getBlue(),temp.nombreReproRestantes,i, temp.attaquesSupportees)));
+                temp.setDirection((View.viewProies(temp.localisation,temp.direction,temp.getGreen(),temp.getBlue(),temp.nombreReproRestantes,i, temp.attaquesSupportees, temp.PVinit)));
                 View.flee(temp.localisation,temp.direction);
             } else{
                 temp.border--;
             }
+            if (temp.PVinit<0) {
 
+            }
         }
 
         for (int i=0;i<Stockage.predateurs.size();i++){  //Prédateurs
             Predateur temp;
+            Stockage.predateurs.get(i).PV--;
             temp = Stockage.predateurs.get(i);
             temp.previousX= temp.getLocalisation().x;
             temp.previousY=temp.getLocalisation().y;
@@ -76,6 +79,10 @@ public class UpdateBoids {
                 temp.border--;
             }
             if (temp.nourriture==0){
+                Stockage.predateurs.remove(i);
+                Stockage.predateursMorts.add(i);
+            } else if (temp.PV<0) {
+                Stockage.predateurs.remove(i);
                 Stockage.predateursMorts.add(i);
             }
 

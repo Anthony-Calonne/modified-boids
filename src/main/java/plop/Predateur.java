@@ -11,6 +11,8 @@ public class Predateur {
     public int probaAttaque;
     public double endurance;
     public double enduranceRestante;
+    public double PVinit;
+    public double PV;
     public Vec getDirection() {
         return direction;
     }

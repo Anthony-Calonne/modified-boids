@@ -5,8 +5,8 @@ import static java.lang.Math.sqrt;
 
 public class View {
 
-    public static Vec viewProies(Vec localisation,Vec direction,int greenOne,int blueOne,int nombreReproM,int rangM, double attaquesSupportees){
-
+    public static Vec viewProies(Vec localisation,Vec direction,int greenOne,int blueOne,int nombreReproM,int rangM, double attaquesSupportees,double PVinit){
+        Stockage.proies.get(rangM).PV--;
         //Initialisation des variables
 
         double coherence = Stockage.coherenceProies;
@@ -40,6 +40,10 @@ public class View {
                     cohe.y += dirTemp.y;
                 }
             }
+
+        }
+        if (Stockage.proies.get(rangM).PV<0){
+            tuerProie(rangM);
         }
 
 
@@ -50,7 +54,7 @@ public class View {
             double distanceBoids = Vec.dist(localisation, locaTemp);
             if(sepa.x==0&&sepa.y==0&& distanceBoids<porteeVisu && nombreReproM>0 && temp.nombreReproRestantes>0){        //ajouter la descendance possible par boid
                 int nbProies = Stockage.proies.size();
-                proiesRepro(localisation, locaTemp, direction, dirTemp, greenOne, blueOne, temp.getGreen(), temp.getBlue(),temp.attaquesSupportees,attaquesSupportees);
+                proiesRepro(localisation, locaTemp, direction, dirTemp, greenOne, blueOne, temp.getGreen(), temp.getBlue(),temp.attaquesSupportees,attaquesSupportees,PVinit,temp.PVinit );
                 int nbProies2 = Stockage.proies.size();
                 if (nbProies2>nbProies){
                     Stockage.proies.get(rangM).nombreReproRestantes--;
@@ -95,7 +99,6 @@ public class View {
         double directionLength = sqrt(pow(direction.x, 2) + pow(direction.y, 2));
 
         direction.div(directionLength);
-
         return direction;
     }
     public static Vec flee(Vec localisation, Vec direction){
@@ -281,6 +284,8 @@ public class View {
         littleOne.probaAttaque= (int) (Math.random() * 2550);
         littleOne.endurance=littleOne.red*10;
         littleOne.enduranceRestante= littleOne.endurance;
+        littleOne.PVinit=(temp.PVinit+predateur.PVinit)/2;
+        littleOne.PV= littleOne.PVinit;
         Stockage.predateurs.add(littleOne);
     }
 
@@ -336,7 +341,7 @@ public class View {
 
     //Systèmes de reproduction
 
-    public static void proiesRepro(Vec localisation, Vec locaTemp, Vec directionP, Vec directionM,int greenOne,int greenTwo,int blueOne,int blueTwo, double attaqueSupOne, double attaqueSupTwo){
+    public static void proiesRepro(Vec localisation, Vec locaTemp, Vec directionP, Vec directionM,int greenOne,int greenTwo,int blueOne,int blueTwo, double attaqueSupOne, double attaqueSupTwo,double PVIun, double PVIdeux){
         float proba = (float)Math.random() * (100 - 0) + 0;
 
         Vec sepa=new Vec(0,0);
@@ -350,11 +355,14 @@ public class View {
             double yVise= (directionP.y+directionM.y)/2;
             littleOne.direction=new Vec(xVise,yVise);
 
-            int green =  0;
-            int blue = 0;
-
             littleOne.setGreen((greenOne+greenTwo)/2);
             littleOne.setBlue((blueOne+blueTwo)/2);
+            double attaqueSup=(attaqueSupOne+attaqueSupTwo)/2;
+            littleOne.attaquesSupportees=attaqueSup;
+            littleOne.attaquesSubies=0;
+
+            littleOne.PVinit=(PVIun+PVIdeux)/2;
+            littleOne.PV= littleOne.PVinit;
 
             littleOne.previousX=0;
             littleOne.previousY=0;

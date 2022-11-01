@@ -33,6 +33,8 @@ public class InitializeBoids {
             temp.blue = (int) (Math.random() * (100 - 10)) + 10;
             temp.previousX=0;
             temp.previousY=0;
+            temp.PVinit=(Math.random()*(2000-300))+300;
+            temp.PV=temp.PVinit;
             temp.attaquesSubies=0;
             temp.attaquesSupportees=Math.random()*2000;
             Stockage.proies.add(temp);
@@ -48,7 +50,8 @@ public class InitializeBoids {
             double x=new Random().nextDouble() * (Stockage.windowWidth - 0);
             double y=new Random().nextDouble() * (Stockage.windowHeight - 0);
 
-
+            temp.PVinit=(Math.random()*(8000-300))+300;
+            temp.PV=temp.PVinit;
 
             temp.localisation =new Vec(x,y);
 
@@ -60,7 +63,7 @@ public class InitializeBoids {
 
             temp.previousX=0;
             temp.previousY=0;
-            temp.nourriture = (int) (Math.random() * (5 - 3) + 3);
+            temp.nourriture = (int) (Math.random() * (4 - 3) + 3);
             temp.red = (int) (Math.random() * (255 - 90) + 90);
             temp.blue = (int) (Math.random() * (100 - 10)) + 10;
 
