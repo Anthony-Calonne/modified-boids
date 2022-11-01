@@ -2,6 +2,7 @@ package plop;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.chart.XYChart;
 
 import java.util.ArrayList;
 
@@ -41,5 +42,14 @@ public class Stockage {
     static int vitessePredateurs = 1;
 
     static GraphicsContext gc;
+
+    //partie Graphiques
+    static XYChart.Series<String,Number> SerieEffectifProies = new XYChart.Series<String,Number>();
+    static XYChart.Series<String,Number> SerieeffectifPredateurs = new XYChart.Series<String,Number>();
+    static XYChart.Series<String,Number> SerieprobaAttaqueMoyenne = new XYChart.Series<String,Number>();
+    static XYChart.Series<String,Number> SeriecouleurVertMoyenne = new XYChart.Series<String,Number>();
+    static XYChart.Series<String,Number> SeriecouleurBleuProies = new XYChart.Series<String,Number>();
+    static XYChart.Series<String,Number> SeriecouleurRougeMoyenne = new XYChart.Series<String,Number>();
+    static XYChart.Series<String,Number> SeriecouleurBleuPreda = new XYChart.Series<String,Number>();
 
 }

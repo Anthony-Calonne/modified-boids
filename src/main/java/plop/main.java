@@ -32,6 +32,18 @@ public class main extends Application {
         simuStage.show();
         simuStage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
     }
+
+    void switchToSceneGraphiques() throws IOException  {
+        Parent root =FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SceneGraphiques.fxml")));
+        Scene scene2 = new Scene(root,850,600,Color.web("#353535"));
+        Stage graphsStage = new Stage();
+        graphsStage.setScene(scene2);
+        //Image logo = new Image("");
+        //graphsStage.getIcons().add(logo);
+        graphsStage.setTitle("Graphiques");
+        graphsStage.show();
+        graphsStage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
+    }
     public void closeWindowEvent(WindowEvent event){
         Stockage.WindowClosed=0;
     }

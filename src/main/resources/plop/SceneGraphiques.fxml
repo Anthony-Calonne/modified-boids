@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="plop.GraphiquesController">
+   <children>
+      <Button fx:id="effectifs" layoutX="23.0" layoutY="30.0" mnemonicParsing="false" onAction="#effectifs" text="Effectifs" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="20.0" />
+      <Button fx:id="probaAttaque" layoutX="33.0" layoutY="40.0" mnemonicParsing="false" onAction="#probaAttaque" text="Probabilité d'attaque" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="20.0" />
+      <Button fx:id="suiviProies" layoutX="33.0" layoutY="40.0" mnemonicParsing="false" onAction="#suiviProies" text="Suivi Proies" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="20.0" />
+      <Button fx:id="suiviPreda" layoutX="33.0" layoutY="40.0" mnemonicParsing="false" onAction="#suiviPreda" text="Suivi prédateurs" AnchorPane.leftAnchor="245.0" AnchorPane.topAnchor="20.0" />
+      <AnchorPane fx:id="GraphiquePane" layoutX="25.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <LineChart fx:id="Graphique" layoutX="150.0" layoutY="68.0" legendSide="RIGHT" titleSide="BOTTOM" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>

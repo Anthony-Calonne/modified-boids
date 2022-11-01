@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
@@ -17,6 +18,7 @@ import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class SimulationController implements Initializable {
@@ -138,9 +140,55 @@ public class SimulationController implements Initializable {
             if (Stockage.predateursMorts.size()!=0){
                 cleanPredators();
             }
-        } ));
+            actualiserDonneesGraphiques();
+        }
+        ));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+    }
+
+    private void actualiserDonneesGraphiques() {
+        Date now = new Date();
+
+        //predateurs
+        double bleuPreda=0;
+        double rougePreda=0;
+        int probaAttaque=0;
+        int effectifPreda=Stockage.predateurs.size();
+        for(int i=0;i<Stockage.predateurs.size();i++){
+            bleuPreda+=Stockage.predateurs.get(i).getBlue();
+            rougePreda+=Stockage.predateurs.get(i).getRed();
+            probaAttaque+=Stockage.predateurs.get(i).probaAttaque;
+        }
+        bleuPreda/=effectifPreda;
+        rougePreda/=effectifPreda;
+        probaAttaque/=effectifPreda;
+        Stockage.SerieeffectifPredateurs.getData().add(new XYChart.Data<String,Number>(simpleDateFormat(now),effectifPreda));
+        Stockage.SeriecouleurBleuPreda.getData().add(new XYChart.Data<String,Number>(simpleDateFormat(now),bleuPreda));
+        Stockage.SeriecouleurRougeMoyenne.getData().add(new XYChart.Data<String,Number>(simpleDateFormat(now),rougePreda));
+        Stockage.SerieprobaAttaqueMoyenne.getData().add(new XYChart.Data<String,Number>(simpleDateFormat(now),probaAttaque));
+
+
+        //proies
+        double bleuProies=0;
+        double vertProies=0;
+        int effectifProies=Stockage.proies.size();
+        for (int i=0;i<Stockage.proies.size();i++){
+            bleuProies+=Stockage.proies.get(i).getBlue();
+            vertProies+=Stockage.proies.get(i).getGreen();
+        }
+        bleuProies/=effectifProies;
+        vertProies/=effectifProies;
+        Stockage.SeriecouleurBleuProies.getData().add(new XYChart.Data<String,Number>(simpleDateFormat(now),bleuProies));
+        Stockage.SeriecouleurVertMoyenne.getData().add(new XYChart.Data<String,Number>(simpleDateFormat(now),vertProies));
+        Stockage.SerieEffectifProies.getData().add(new XYChart.Data<String,Number>(simpleDateFormat(now),effectifProies));
+    }
+
+    private String simpleDateFormat(Date now) {
+        String hours = String.valueOf(now.getHours());
+        String minutes = String.valueOf(now.getMinutes());
+        String seconds = String.valueOf(now.getSeconds());
+        return(hours+":"+minutes+":"+seconds);
     }
 
 
