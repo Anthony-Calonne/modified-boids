@@ -47,19 +47,23 @@ public class GraphiquesController implements Initializable {
     }
     @FXML void effectifs(ActionEvent event) {
         reinitialiserGraphique();
+        Graphique.setTitle("Effectifs");
         Graphique.getData().add(Stockage.SerieEffectifProies);
         Graphique.getData().add(Stockage.SerieeffectifPredateurs);
+
         Effectif=true;
     }
 
     @FXML void probaAttaque(ActionEvent event) {
         reinitialiserGraphique();
+        Graphique.setTitle("Probabilité d'attaque moyenne");
         Graphique.getData().add(Stockage.SerieprobaAttaqueMoyenne);
         ProbaAttaque=true;
     }
 
     @FXML void suiviPreda(ActionEvent event) {
         reinitialiserGraphique();
+        Graphique.setTitle("Couleur moyenne des prédateurs (rouge et bleu)");
         Graphique.getData().add(Stockage.SeriecouleurBleuPreda);
         Graphique.getData().add(Stockage.SeriecouleurRougeMoyenne);
         SuiviPreda=true;
@@ -67,6 +71,7 @@ public class GraphiquesController implements Initializable {
 
     @FXML void suiviProies(ActionEvent event) {
         reinitialiserGraphique();
+        Graphique.setTitle("Couleur moyenne des proies (vert et bleu)");
         Graphique.getData().add(Stockage.SeriecouleurBleuProies);
         Graphique.getData().add(Stockage.SeriecouleurVertMoyenne);
         SuiviProies=true;
@@ -75,5 +80,12 @@ public class GraphiquesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Graphique.setAnimated(false);
+        Stockage.SeriecouleurVertMoyenne.setName("Vert moyen des proies");
+        Stockage.SeriecouleurBleuProies.setName("Bleu moyen des proies");
+        Stockage.SeriecouleurRougeMoyenne.setName("Rouge moyen des prédateurs");
+        Stockage.SeriecouleurBleuPreda.setName("Bleu moyen des prédateurs");
+        Stockage.SerieeffectifPredateurs.setName("Nombre de prédateurs");
+        Stockage.SerieEffectifProies.setName("Nombre de proies");
+        Stockage.SerieprobaAttaqueMoyenne.setName("Probabilité d'attaque");
     }
 }

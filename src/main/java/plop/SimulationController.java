@@ -118,6 +118,7 @@ public class SimulationController implements Initializable {
     }
 
     public void startSimulation() throws InterruptedException {
+        final int[] compteur = {0};
         start.setDisable(true);
         Stockage.windowHeight = gc.getCanvas().getHeight();
         Stockage.windowWidth = gc.getCanvas().getWidth();
@@ -125,6 +126,7 @@ public class SimulationController implements Initializable {
         drawInitiation(gc);
         drawBoids(gc);
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50),e ->{
+            compteur[0]++;
             Stockage.nombreProies=Stockage.proies.size();
             UpdateBoids.update();
             drawBoids(gc);
@@ -140,7 +142,9 @@ public class SimulationController implements Initializable {
             if (Stockage.predateursMorts.size()!=0){
                 cleanPredators();
             }
-            actualiserDonneesGraphiques();
+            if (compteur[0] %5==0){
+                actualiserDonneesGraphiques();
+            }
         }
         ));
         timeline.setCycleCount(Animation.INDEFINITE);
