@@ -18,7 +18,8 @@ public class UpdateBoids {
             temp = Stockage.proies.get(i);
             temp.previousX= temp.getLocalisation().x;
             temp.previousY=temp.getLocalisation().y;
-            temp.localisation.add(temp.getDirection());
+            temp.localisation.x+=(temp.direction.x*Stockage.vitesseProies);
+            temp.localisation.y+=(temp.direction.y*Stockage.vitesseProies);
 
             Vec loca=temp.localisation;
 
@@ -42,8 +43,8 @@ public class UpdateBoids {
             temp = Stockage.predateurs.get(i);
             temp.previousX= temp.getLocalisation().x;
             temp.previousY=temp.getLocalisation().y;
-            temp.localisation.x+=(temp.direction.x*temp.vitesse);
-            temp.localisation.y+=(temp.direction.y*temp.vitesse);
+            temp.localisation.x+=(temp.direction.x*temp.vitesse*Stockage.vitessePreda);
+            temp.localisation.y+=(temp.direction.y*temp.vitesse*Stockage.vitessePreda);
             Vec loca=temp.localisation;
 
             if (loca.x<border || loca.x>Stockage.windowWidth-border||loca.y<border||loca.y>Stockage.windowHeight-border){

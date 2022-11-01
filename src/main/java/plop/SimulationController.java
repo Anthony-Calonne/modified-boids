@@ -272,6 +272,8 @@ public class SimulationController implements Initializable {
         Stockage.coherencePreda=cohePreda.getValue();
         Stockage.separationProies=sepaProies.getValue();
         Stockage.separationPreda=sepaPreda.getValue();
+        Stockage.vitessePreda=vitessePreda.getValue();
+        Stockage.vitesseProies=vitesseProies.getValue();
     }
 
     public void updateShownData(){

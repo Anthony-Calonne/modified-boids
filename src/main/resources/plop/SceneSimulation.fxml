@@ -45,7 +45,7 @@
                         </ButtonBar>
                         <ButtonBar AnchorPane.topAnchor="80.0">
                            <buttons>
-                              <Slider fx:id="vitesseProies" blockIncrement="1.0" min="1.0" prefHeight="14.0" prefWidth="121.0" value="50.0" />
+                              <Slider fx:id="vitesseProies" blockIncrement="0.01" max="1.5" min="0.5" prefHeight="14.0" prefWidth="121.0" value="1.0" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vitesse" />
                            </buttons>
                         </ButtonBar>
@@ -85,7 +85,7 @@
                         <ButtonBar AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
                            <buttons>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vitesse" />
-                              <Slider fx:id="vitessePreda" blockIncrement="1.0" min="1.0" prefHeight="14.0" prefWidth="121.0" value="50.0" />
+                              <Slider fx:id="vitessePreda" blockIncrement="0.01" max="1.5" min="0.5" prefHeight="14.0" prefWidth="121.0" value="1.0" />
                            </buttons>
                         </ButtonBar>
                         <Text fx:id="nbPredateursRestants" layoutX="34.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Predateurs :" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="200.0" />
