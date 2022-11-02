@@ -7,6 +7,8 @@ import javafx.scene.chart.XYChart;
 import java.util.ArrayList;
 
 public class Stockage {
+    public static boolean heredite = true;
+    public static boolean culture = true;
     public static boolean traces=true;
     public static int WindowClosed=1;
     public static int competiteursToleres = 5;

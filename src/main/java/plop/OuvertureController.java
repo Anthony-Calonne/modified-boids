@@ -1,6 +1,7 @@
 package plop;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,10 +10,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class OuvertureController {
+public class OuvertureController implements Initializable {
     @FXML private TextField nbProies;
     @FXML private TextField nbPredateurs;
+    @FXML private Button TransmiCultu;
+    @FXML private Button Heredite;
     @FXML private Button demarrer;
     @FXML private Button graphiques;
     @FXML private Text textError;
@@ -24,8 +29,29 @@ public class OuvertureController {
     int nombrePredateurs=0;
 
 
+    public void heredite() {
+        if (Stockage.heredite){
+            Heredite.setText("Pas de transmission héréditaire");
+            Stockage.heredite=false;
+        } else{
+            Heredite.setText("Transmission héréditaire");
+            Stockage.heredite=true;
+        }
+    }
 
-    public void demarrer(){
+    public void culture() {
+        if (Stockage.culture){
+            TransmiCultu.setText("Pas de transmission culturelle");
+            Stockage.culture=false;
+        } else{
+            TransmiCultu.setText("Transmission culturelle");
+            Stockage.culture=true;
+        }
+    }
+
+
+
+        public void demarrer(){
         String Proies = nbProies.getText();
         String Predateurs= nbPredateurs.getText();
         try {
@@ -69,4 +95,9 @@ public void switchToSceneSimulation(){
 
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        TransmiCultu.setText("Transmission culturelle");
+        Heredite.setText("Transmission héréditaire");
+    }
 }
