@@ -36,6 +36,7 @@ public class Stockage {
     static double alignementPreda;
     static double porteeVisuPreda;
     static double vitessePreda;
+    static boolean isInterupted = false;
     static int predaDataACopier;
     static ArrayList<Vec> localisationProiesTuees = new ArrayList<>();
     static ArrayList<Proie> proies = new ArrayList<>();
@@ -54,4 +55,18 @@ public class Stockage {
     static XYChart.Series<String,Number> SeriecouleurRougeMoyenne = new XYChart.Series<String,Number>();
     static XYChart.Series<String,Number> SeriecouleurBleuPreda = new XYChart.Series<String,Number>();
 
+    static void clearAll(){
+
+        predateurs.clear();
+        proies.clear();
+        localisationProiesTuees.clear();
+        predateursMorts.clear();
+        SerieEffectifProies.getData().clear();
+        SerieeffectifPredateurs.getData().clear();
+        SerieprobaAttaqueMoyenne.getData().clear();
+        SeriecouleurVertMoyenne.getData().clear();
+        SeriecouleurBleuProies.getData().clear();
+        SeriecouleurRougeMoyenne.getData().clear();
+        SeriecouleurBleuPreda.getData().clear();
+    }
 }

@@ -277,14 +277,20 @@ public class View {
         double xVise= (predateur.direction.x+temp.direction.x)/2;
         double yVise= (predateur.direction.y+temp.direction.y)/2;
         littleOne.direction=new Vec(xVise,yVise);
+        if (Stockage.heredite){
+            littleOne.red=(temp.red+predateur.red)/2;
+            littleOne.blue=(temp.blue+predateur.blue)/2;
+            littleOne.PVinit=(temp.PVinit+predateur.PVinit)/2;
+        }else{
+            littleOne.setRed((int) (Math.random() * (255 - 90) + 90));
+            littleOne.setBlue( (int) (Math.random() * (100 - 10)) + 10);
+            littleOne.PVinit=(Math.random()*(8000-300))+300;
 
-        littleOne.red=(temp.red+predateur.red)/2;
-        littleOne.blue=(temp.blue+predateur.blue)/2;
+        }
 
         littleOne.probaAttaque= (int) (Math.random() * 2550);
         littleOne.endurance=littleOne.red*10;
         littleOne.enduranceRestante= littleOne.endurance;
-        littleOne.PVinit=(temp.PVinit+predateur.PVinit)/2;
         littleOne.PV= littleOne.PVinit;
         Stockage.predateurs.add(littleOne);
     }
@@ -308,7 +314,9 @@ public class View {
             double distance = Vec.dist(locaProie,Stockage.predateurs.get(i).localisation);
             if (distance<Stockage.porteeVisuPreda){
                 Stockage.predateurs.get(i).nourriture++;
-                Stockage.predateurs.get(i).probaAttaque=(Stockage.predateurs.get(i).probaAttaque+Stockage.predaDataACopier)/2;
+                if (Stockage.culture) {
+                    Stockage.predateurs.get(i).probaAttaque = (Stockage.predateurs.get(i).probaAttaque + Stockage.predaDataACopier) / 2;
+                }
             }
         }
     }
@@ -355,13 +363,19 @@ public class View {
             double yVise= (directionP.y+directionM.y)/2;
             littleOne.direction=new Vec(xVise,yVise);
 
-            littleOne.setGreen((greenOne+greenTwo)/2);
-            littleOne.setBlue((blueOne+blueTwo)/2);
+            if (Stockage.heredite){
+                littleOne.setGreen((greenOne+greenTwo)/2);
+                littleOne.setBlue((blueOne+blueTwo)/2);
+                littleOne.PVinit=(PVIun+PVIdeux)/2;
+            } else {
+                littleOne.setBlue((int) (Math.random() * (100 - 10)) + 10);
+                littleOne.setGreen((int) (Math.random() * (255 - 90)) + 90);
+                littleOne.PVinit=(Math.random()*(2000-300))+300;
+            }
             double attaqueSup=(attaqueSupOne+attaqueSupTwo)/2;
             littleOne.attaquesSupportees=attaqueSup;
             littleOne.attaquesSubies=0;
 
-            littleOne.PVinit=(PVIun+PVIdeux)/2;
             littleOne.PV= littleOne.PVinit;
 
             littleOne.previousX=0;

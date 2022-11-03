@@ -43,6 +43,8 @@ public class SimulationController implements Initializable {
     @FXML public Circle couleurPredaInit;
     @FXML public Circle couleurPredaActu;
     GraphicsContext gc;
+    public ArrayList<Vec> cleaningList = new ArrayList<Vec>();
+    public ArrayList<Vec> cleaningList2 = new ArrayList<Vec>();
     Canvas canvas = new Canvas();
 
     double mouseX;
@@ -116,39 +118,50 @@ public class SimulationController implements Initializable {
             Stockage.traces=true;
         }
     }
+    final int[] compteur = {0};
+
+    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50),e ->{
+        compteur[0]++;
+        Stockage.nombreProies=Stockage.proies.size();
+        UpdateBoids.update();
+        drawBoids(gc);
+        updateDataSet();
+        updateShownData();
+        killPreys();
+        couleurPredaActu.setFill(updateColor(1));
+        couleurProieActu.setFill(updateColor(0));
+        killPredators();
+        if (cleaningList2.size()>0){
+            cleanPreys();
+        }
+        if (Stockage.predateursMorts.size()!=0){
+            cleanPredators();
+        }
+        if (compteur[0] %5==0){
+            actualiserDonneesGraphiques();
+        }
+        if (Stockage.isInterupted){
+            Stockage.isInterupted=false;
+            stopTimeline();
+        }
+    }
+    ));
+
+    private void stopTimeline() {
+        timeline.stop();
+        Stockage.clearAll();
+    }
 
     public void startSimulation() throws InterruptedException {
-        final int[] compteur = {0};
+        compteur[0] = 0;
         start.setDisable(true);
         Stockage.windowHeight = gc.getCanvas().getHeight();
         Stockage.windowWidth = gc.getCanvas().getWidth();
         InitializeBoids.Initialize(Stockage.nombreProies, Stockage.nombrePredateurs);
         drawInitiation(gc);
-        drawBoids(gc);
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(50),e ->{
-            compteur[0]++;
-            Stockage.nombreProies=Stockage.proies.size();
-            UpdateBoids.update();
-            drawBoids(gc);
-            updateDataSet();
-            updateShownData();
-            killPreys();
-            couleurPredaActu.setFill(updateColor(1));
-            couleurProieActu.setFill(updateColor(0));
-            killPredators();
-            if (cleaningList2.size()>0){
-                cleanPreys();
-            }
-            if (Stockage.predateursMorts.size()!=0){
-                cleanPredators();
-            }
-            if (compteur[0] %5==0){
-                actualiserDonneesGraphiques();
-            }
-        }
-        ));
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
+
     }
 
     private void actualiserDonneesGraphiques() {
@@ -196,8 +209,6 @@ public class SimulationController implements Initializable {
     }
 
 
-    public ArrayList<Vec> cleaningList = new ArrayList<Vec>();
-    public ArrayList<Vec> cleaningList2 = new ArrayList<Vec>();
     public void killPredators(){
         for (int i = 0; i<Stockage.predateursMorts.size();i++ ){
             cleaningList.add(Stockage.predateurs.get(i).getLocalisation());
@@ -284,14 +295,6 @@ public class SimulationController implements Initializable {
 
 
     private void drawInitiation(GraphicsContext gc){
-        gc.setStroke(Color.rgb(100,200,100));
-        for (int i = 0;i<Stockage.nombreProies;i++ ){
-            gc.strokeRect(Stockage.proies.get(i).getLocalisation().x,Stockage.proies.get(i).getLocalisation().y,2,2);
-        }
-        gc.setStroke(Color.rgb(250,50,50));
-        for (int i = 0;i<Stockage.predateurs.size();i++ ){
-            gc.strokeRect(Stockage.predateurs.get(i).getLocalisation().x,Stockage.predateurs.get(i).getLocalisation().y,2,2);
-        }
         couleurProieInit.setFill(updateColor(0));
         couleurPredaInit.setFill(updateColor(1));
     }

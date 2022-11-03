@@ -46,6 +46,7 @@ public class main extends Application {
     }
     public void closeWindowEvent(WindowEvent event){
         Stockage.WindowClosed=0;
+        Stockage.isInterupted=true;
     }
     @Override
     public void start(Stage primaryStage) throws IOException {		//Crée la première fenêtre quand le programme est lancé
