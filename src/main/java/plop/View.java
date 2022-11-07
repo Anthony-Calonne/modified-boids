@@ -331,7 +331,7 @@ public class View {
         double distance=Vec.dist(locaPreda,locaProie);
         if (distance<Stockage.porteeVisuPreda){
             if (distance>1){
-                degatsProie=(degatsPreda/distance)*(predateur.red/255)*(proie.green/255);
+                degatsProie=(degatsPreda/distance)*(predateur.red/255)*(proie.green/255)*(predateur.probaAttaque*2)/2550;
             } else{
                 degatsProie=degatsPreda*2;
             }
