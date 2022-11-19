@@ -49,7 +49,7 @@ public class Stockage {
     //partie Graphiques
     static XYChart.Series<String,Number> SerieEffectifProies = new XYChart.Series<String,Number>();
     static XYChart.Series<String,Number> SerieeffectifPredateurs = new XYChart.Series<String,Number>();
-    static XYChart.Series<String,Number> SerieprobaAttaqueMoyenne = new XYChart.Series<String,Number>();
+    static XYChart.Series<String,Number> SerieSeuilChasseMoyen = new XYChart.Series<String,Number>();
     static XYChart.Series<String,Number> SeriecouleurVertMoyenne = new XYChart.Series<String,Number>();
     static XYChart.Series<String,Number> SeriecouleurBleuProies = new XYChart.Series<String,Number>();
     static XYChart.Series<String,Number> SeriecouleurRougeMoyenne = new XYChart.Series<String,Number>();
@@ -63,7 +63,7 @@ public class Stockage {
         predateursMorts.clear();
         SerieEffectifProies.getData().clear();
         SerieeffectifPredateurs.getData().clear();
-        SerieprobaAttaqueMoyenne.getData().clear();
+        SerieSeuilChasseMoyen.getData().clear();
         SeriecouleurVertMoyenne.getData().clear();
         SeriecouleurBleuProies.getData().clear();
         SeriecouleurRougeMoyenne.getData().clear();

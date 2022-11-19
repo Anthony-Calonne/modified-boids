@@ -183,7 +183,7 @@ public class SimulationController implements Initializable {
         Stockage.SerieeffectifPredateurs.getData().add(new XYChart.Data<String,Number>(simpleDateFormat(now),effectifPreda));
         Stockage.SeriecouleurBleuPreda.getData().add(new XYChart.Data<String,Number>(simpleDateFormat(now),bleuPreda));
         Stockage.SeriecouleurRougeMoyenne.getData().add(new XYChart.Data<String,Number>(simpleDateFormat(now),rougePreda));
-        Stockage.SerieprobaAttaqueMoyenne.getData().add(new XYChart.Data<String,Number>(simpleDateFormat(now),probaAttaque));
+        Stockage.SerieSeuilChasseMoyen.getData().add(new XYChart.Data<String,Number>(simpleDateFormat(now),probaAttaque));
 
 
         //proies

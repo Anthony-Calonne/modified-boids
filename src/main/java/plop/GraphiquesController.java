@@ -34,7 +34,7 @@ public class GraphiquesController implements Initializable {
             Graphique.getData().remove(Stockage.SerieeffectifPredateurs);
         }else if (ProbaAttaque){
             ProbaAttaque=false;
-            Graphique.getData().remove(Stockage.SerieprobaAttaqueMoyenne);
+            Graphique.getData().remove(Stockage.SerieSeuilChasseMoyen);
         } else if (SuiviPreda) {
             SuiviPreda=false;
             Graphique.getData().remove(Stockage.SeriecouleurBleuPreda);
@@ -56,8 +56,8 @@ public class GraphiquesController implements Initializable {
 
     @FXML void probaAttaque(ActionEvent event) {
         reinitialiserGraphique();
-        Graphique.setTitle("Seuil d'attaque moyen");
-        Graphique.getData().add(Stockage.SerieprobaAttaqueMoyenne);
+        Graphique.setTitle("Seuil moyen de chasse");
+        Graphique.getData().add(Stockage.SerieSeuilChasseMoyen);
         ProbaAttaque=true;
     }
 
@@ -86,6 +86,6 @@ public class GraphiquesController implements Initializable {
         Stockage.SeriecouleurBleuPreda.setName("Bleu moyen des prédateurs");
         Stockage.SerieeffectifPredateurs.setName("Nombre de prédateurs");
         Stockage.SerieEffectifProies.setName("Nombre de proies");
-        Stockage.SerieprobaAttaqueMoyenne.setName("Probabilité d'attaque");
+        Stockage.SerieSeuilChasseMoyen.setName("Seuil moyen à partir duquel un prédateur commence à chasser");
     }
 }

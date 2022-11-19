@@ -9,7 +9,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="plop.GraphiquesController">
    <children>
       <Button fx:id="effectifs" layoutX="23.0" layoutY="30.0" mnemonicParsing="false" onAction="#effectifs" text="Effectifs" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="20.0" />
-      <Button fx:id="probaAttaque" layoutX="33.0" layoutY="40.0" mnemonicParsing="false" onAction="#probaAttaque" text="Seuil d'attaque" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="20.0" />
+      <Button fx:id="probaAttaque" layoutX="33.0" layoutY="40.0" mnemonicParsing="false" onAction="#probaAttaque" text="Seuil de chasse" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="20.0" />
       <Button fx:id="suiviProies" layoutX="33.0" layoutY="40.0" mnemonicParsing="false" onAction="#suiviProies" text="Suivi Proies" AnchorPane.leftAnchor="330.0" AnchorPane.topAnchor="20.0" />
       <Button fx:id="suiviPreda" layoutX="33.0" layoutY="40.0" mnemonicParsing="false" onAction="#suiviPreda" text="Suivi prédateurs" AnchorPane.leftAnchor="210.0" AnchorPane.topAnchor="20.0" />
       <AnchorPane fx:id="GraphiquePane" layoutX="25.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
