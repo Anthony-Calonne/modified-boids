@@ -22,7 +22,7 @@ public class main extends Application {
     }
 
     void switchToSceneSimulation() throws IOException  {
-        Parent root =FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SceneSimulation.fxml")));
+        Parent root =FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/plop/SceneSimulation.fxml")));
         Scene scene2 = new Scene(root,850,600,Color.web("#353535"));
         Stage simuStage = new Stage();
         simuStage.setScene(scene2);
@@ -34,7 +34,7 @@ public class main extends Application {
     }
 
     void switchToSceneGraphiques() throws IOException  {
-        Parent root =FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SceneGraphiques.fxml")));
+        Parent root =FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/plop/SceneGraphiques.fxml")));
         Scene scene2 = new Scene(root,850,600,Color.web("#353535"));
         Stage graphsStage = new Stage();
         graphsStage.setScene(scene2);
@@ -50,7 +50,7 @@ public class main extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws IOException {		//Crée la première fenêtre quand le programme est lancé
-        Parent root =FXMLLoader.load(Objects.requireNonNull(getClass().getResource("SceneOuverture.fxml")));
+        Parent root =FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/plop/SceneOuverture.fxml")));
         Scene scene = new Scene(root);
 
         /*FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("SceneOuverture.fxml"));

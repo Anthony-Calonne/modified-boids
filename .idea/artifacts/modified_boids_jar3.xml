@@ -4,6 +4,7 @@
     <root id="archive" name="modified-boids.jar">
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
+        <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
       </element>
       <element id="module-output" name="demo" />
       <element id="module-output" name="modified-boids.main" />
@@ -32,6 +33,7 @@
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-controls/18.0.1/c292e8fcec3ffd843216a29c3b00b2d320efe83d/javafx-controls-18.0.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/18.0.1/javafx-controls-18.0.1.jar" path-in-jar="/" />
       <element id="dir-copy" path="$PROJECT_DIR$/../../javafx-sdk-19" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
     </root>
   </artifact>
 </component>

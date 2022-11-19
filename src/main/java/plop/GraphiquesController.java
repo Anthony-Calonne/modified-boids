@@ -56,7 +56,7 @@ public class GraphiquesController implements Initializable {
 
     @FXML void probaAttaque(ActionEvent event) {
         reinitialiserGraphique();
-        Graphique.setTitle("Probabilité d'attaque moyenne");
+        Graphique.setTitle("Seuil d'attaque moyen");
         Graphique.getData().add(Stockage.SerieprobaAttaqueMoyenne);
         ProbaAttaque=true;
     }
