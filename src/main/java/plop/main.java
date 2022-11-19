@@ -8,7 +8,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -27,8 +26,8 @@ public class main extends Application {
         Scene scene2 = new Scene(root,850,600,Color.web("#353535"));
         Stage simuStage = new Stage();
         simuStage.setScene(scene2);
-        javafx.scene.image.Image logo = new Image("prey.png");
-        simuStage.getIcons().add(logo);
+        //javafx.scene.image.Image logo = new Image("prey.png");
+        //simuStage.getIcons().add(logo);
         simuStage.setTitle("Simulation");
         simuStage.show();
         simuStage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeWindowEvent);
