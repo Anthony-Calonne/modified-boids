@@ -2,7 +2,8 @@ package plop;
 
 public class Proie {
     public int border=0;
-    public int nombreReproRestantes =3;
+    public int nombreReproRestantes =5;
+    public int tempsDepuisRepro = 0;
     public Vec direction;
     public Vec localisation;
 

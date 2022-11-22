@@ -5,7 +5,7 @@ import static java.lang.Math.sqrt;
 
 public class View {
 
-    public static Vec viewProies(Vec localisation,Vec direction,int greenOne,int blueOne,int nombreReproM,int rangM, double attaquesSupportees,double PVinit){
+    public static Vec viewProies(Vec localisation,Vec direction,int greenOne,int blueOne,int nombreReproM,int rangM, double attaquesSupportees,double PVinit,double tempsDepuisRepro){
         Stockage.proies.get(rangM).PV--;
         //Initialisation des variables
 
@@ -52,12 +52,14 @@ public class View {
             Vec locaTemp = temp.localisation;
             Vec dirTemp = temp.direction;
             double distanceBoids = Vec.dist(localisation, locaTemp);
-            if(sepa.x==0&&sepa.y==0&& distanceBoids<porteeVisu && nombreReproM>0 && temp.nombreReproRestantes>0){        //ajouter la descendance possible par boid
+            if(sepa.x==0&&sepa.y==0&& distanceBoids<porteeVisu  && tempsDepuisRepro*((100*Stockage.maxProies)/Stockage.nombreProies)>20){        //ajouter la descendance possible par boid
                 int nbProies = Stockage.proies.size();
                 proiesRepro(localisation, locaTemp, direction, dirTemp, greenOne, blueOne, temp.getGreen(), temp.getBlue(),temp.attaquesSupportees,attaquesSupportees,PVinit,temp.PVinit );
                 int nbProies2 = Stockage.proies.size();
                 if (nbProies2>nbProies){
                     Stockage.proies.get(rangM).nombreReproRestantes--;
+                    Stockage.proies.get(rangM).tempsDepuisRepro=0;
+                    temp.tempsDepuisRepro=0;
                     temp.nombreReproRestantes--;
                 }
             }
@@ -173,7 +175,7 @@ public class View {
             }
 
         }else {
-            if(predateur.nourriture>5&&predateur.reproPossible==0){
+            if(predateur.nourriture>10&&predateur.reproPossible==0){
                 predateur.nourriture--;
                 predateur.reproPossible++;
             }
@@ -331,7 +333,7 @@ public class View {
         double distance=Vec.dist(locaPreda,locaProie);
         if (distance<Stockage.porteeVisuPreda){
             if (distance>1){
-                degatsProie=(degatsPreda/distance)*(predateur.red/255)*(proie.green/255)*(predateur.probaAttaque*2)/2550;
+                degatsProie=(degatsPreda/distance)*((proie.green*predateur.probaAttaque)/(255*2550))*((proie.blue*predateur.probaAttaque)/(255*2550));
             } else{
                 degatsProie=degatsPreda*2;
             }
@@ -353,35 +355,40 @@ public class View {
         float proba = (float)Math.random() * (100 - 0) + 0;
 
         Vec sepa=new Vec(0,0);
-        if (proba>99.9 && Stockage.proies.size()<Stockage.maxProies){
-            Proie littleOne= new Proie();
-            double x = (localisation.x+ locaTemp.x)/2;
-            double y = (localisation.y+ locaTemp.y)/2;
-            littleOne.localisation=new Vec(x,y);
+        if (proba>99.9 && Stockage.proies.size()<Stockage.maxProies) {
+            int portee = (int) (Math.random() * (3 - 1) + 1);
+            for (int z = 0; z<portee; z++){
+                Proie littleOne = new Proie();
+                double al = Math.random() * 15;
+                double x = (localisation.x + locaTemp.x + al) / 2;
+                double y = (localisation.y + locaTemp.y + al) / 2;
+                littleOne.localisation = new Vec(x, y);
 
-            double xVise= (directionP.x+directionM.x)/2;
-            double yVise= (directionP.y+directionM.y)/2;
-            littleOne.direction=new Vec(xVise,yVise);
+                double xVise = (directionP.x + directionM.x) / 2;
+                double yVise = (directionP.y + directionM.y) / 2;
+                littleOne.direction = new Vec(xVise, yVise);
 
-            if (Stockage.heredite){
-                littleOne.setGreen((greenOne+greenTwo + (int) (Math.random() * (100 - 90)) + 90)/3);
-                littleOne.setBlue((blueOne+blueTwo + (int) (Math.random() * (255 - 10)) + 10)/3);
-                littleOne.PVinit=(PVIun+PVIdeux)/2;
-            } else {
-                littleOne.setBlue((int) (Math.random() * (100 - 10)) + 10);
-                littleOne.setGreen((int) (Math.random() * (255 - 90)) + 90);
-                littleOne.PVinit=(Math.random()*(2000-300))+300;
+                if (Stockage.heredite) {
+                    littleOne.setGreen((greenOne + greenTwo + (int) (Math.random() * (100 - 90)) + 90) / 3);
+                    littleOne.setBlue((blueOne + blueTwo + (int) (Math.random() * (255 - 10)) + 10) / 3);
+                    littleOne.PVinit = (PVIun + PVIdeux) / 2;
+                } else {
+                    littleOne.setBlue((int) (Math.random() * (100 - 10)) + 10);
+                    littleOne.setGreen((int) (Math.random() * (255 - 90)) + 90);
+                    littleOne.PVinit = (Math.random() * (2000 - 300)) + 300;
+                }
+                double attaqueSup = (attaqueSupOne + attaqueSupTwo) / 2;
+                littleOne.attaquesSupportees = attaqueSup;
+                littleOne.attaquesSubies = 0;
+
+                littleOne.PV = littleOne.PVinit;
+
+                littleOne.previousX = 0;
+                littleOne.previousY = 0;
+
+
+                Stockage.proies.add(littleOne);
             }
-            double attaqueSup=(attaqueSupOne+attaqueSupTwo)/2;
-            littleOne.attaquesSupportees=attaqueSup;
-            littleOne.attaquesSubies=0;
-
-            littleOne.PV= littleOne.PVinit;
-
-            littleOne.previousX=0;
-            littleOne.previousY=0;
-
-            Stockage.proies.add(littleOne);
         }
     }
 }

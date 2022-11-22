@@ -13,7 +13,7 @@ public class Stockage {
     public static boolean traces=true;
     public static int WindowClosed=1;
     public static int competiteursToleres = 5;
-    static double degatsPreda = 500;
+    static double degatsPreda = 100;
     static double distanceNutritionPreda = 20;
 
     public static int nourritureNecessairePredateurs = 3;

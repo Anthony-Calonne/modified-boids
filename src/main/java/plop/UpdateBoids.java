@@ -16,6 +16,7 @@ public class UpdateBoids {
 
             Proie temp;
             temp = Stockage.proies.get(i);
+            temp.tempsDepuisRepro++;
             temp.previousX= temp.getLocalisation().x;
             temp.previousY=temp.getLocalisation().y;
             temp.localisation.x+=(temp.direction.x*Stockage.vitesseProies);
@@ -27,7 +28,7 @@ public class UpdateBoids {
                 recentrer(temp.localisation,temp.direction,centreFenetre);
                 temp.border=(int)Stockage.porteeVisuProies;
             } else if (temp.border<0){
-                temp.setDirection((View.viewProies(temp.localisation,temp.direction,temp.getGreen(),temp.getBlue(),temp.nombreReproRestantes,i, temp.attaquesSupportees, temp.PVinit)));
+                temp.setDirection((View.viewProies(temp.localisation,temp.direction,temp.getGreen(),temp.getBlue(),temp.nombreReproRestantes,i, temp.attaquesSupportees, temp.PVinit, temp.tempsDepuisRepro)));
                 View.flee(temp.localisation,temp.direction);
             } else{
                 temp.border--;
@@ -68,7 +69,7 @@ public class UpdateBoids {
                     }
                     if (temp.enduranceRestante<0){
                         temp.enduranceRestante=temp.endurance;
-                        double y=(Math.random() * 256);
+                        double y=(Math.random() * 2550);
                         if (y>temp.probaAttaque && temp.competiteurs<Stockage.competiteursToleres){
                             temp.attaque=true;
                             temp.vitesse=1.5;
