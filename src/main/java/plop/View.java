@@ -316,6 +316,9 @@ public class View {
             double distance = Vec.dist(locaProie,Stockage.predateurs.get(i).localisation);
             if (distance<Stockage.porteeVisuPreda){
                 Stockage.predateurs.get(i).nourriture++;
+                if (Stockage.predateurs.get(i).nourriture>7 && Stockage.nombrePredateurs<15){
+                    Stockage.predateurs.get(i).PV=Stockage.predateurs.get(i).PVinit;
+                }
                 if (Stockage.culture) {
                     Stockage.predateurs.get(i).probaAttaque = (Stockage.predateurs.get(i).probaAttaque + Stockage.predaDataACopier) / 2;
                 }

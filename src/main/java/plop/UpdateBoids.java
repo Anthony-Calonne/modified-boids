@@ -84,8 +84,12 @@ public class UpdateBoids {
                 Stockage.predateurs.remove(i);
                 Stockage.predateursMorts.add(i);
             } else if (temp.PV<0) {
-                Stockage.predateurs.remove(i);
-                Stockage.predateursMorts.add(i);
+                if(Stockage.predateurs.size()!=2){
+                    Stockage.predateurs.remove(i);
+                    Stockage.predateursMorts.add(i);
+                } else{
+                    temp.PV=temp.PVinit;
+                }
             }
 
 
