@@ -47,6 +47,7 @@ public class Stockage {
 
     static GraphicsContext gc;
     static Date debut;
+    static int nombreCyclesActualisation;
     //partie Graphiques
     static XYChart.Series<String,Number> SerieEffectifProies = new XYChart.Series<String,Number>();
     static XYChart.Series<String,Number> SerieeffectifPredateurs = new XYChart.Series<String,Number>();

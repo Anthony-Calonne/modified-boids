@@ -137,7 +137,7 @@ public class SimulationController implements Initializable {
         if (Stockage.predateursMorts.size()!=0){
             cleanPredators();
         }
-        if (compteur[0] %20==0){
+        if (compteur[0] %Stockage.nombreCyclesActualisation==0){
             actualiserDonneesGraphiques();
         }
         if (Stockage.isInterupted){

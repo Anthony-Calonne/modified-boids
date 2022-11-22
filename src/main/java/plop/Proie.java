@@ -30,6 +30,10 @@ public class Proie {
         return blue;
     }
 
+    public void setBlue(int blue) {
+        this.blue = blue;
+    }
+
     public Vec getLocalisation() {
         return localisation;
     }
@@ -48,10 +52,6 @@ public class Proie {
     }
 
 
-
-    public void setBlue(int blue) {
-        this.blue = blue;
-    }
 
     public double getPreviousX() {
         return previousX;

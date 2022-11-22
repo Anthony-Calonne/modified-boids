@@ -278,8 +278,8 @@ public class View {
         double yVise= (predateur.direction.y+temp.direction.y)/2;
         littleOne.direction=new Vec(xVise,yVise);
         if (Stockage.heredite){
-            littleOne.red=(temp.red+predateur.red)/2;
-            littleOne.blue=(temp.blue+predateur.blue)/2;
+            littleOne.red=(temp.red+predateur.red+ (int) (Math.random() * (255 - 90) + 90))/3;
+            littleOne.blue=(temp.blue+predateur.blue + (int) (Math.random() * (100 - 10)) + 10)/3;
             littleOne.PVinit=(temp.PVinit+predateur.PVinit)/2;
         }else{
             littleOne.setRed((int) (Math.random() * (255 - 90) + 90));
@@ -364,8 +364,8 @@ public class View {
             littleOne.direction=new Vec(xVise,yVise);
 
             if (Stockage.heredite){
-                littleOne.setGreen((greenOne+greenTwo)/2);
-                littleOne.setBlue((blueOne+blueTwo)/2);
+                littleOne.setGreen((greenOne+greenTwo + (int) (Math.random() * (100 - 90)) + 90)/3);
+                littleOne.setBlue((blueOne+blueTwo + (int) (Math.random() * (255 - 10)) + 10)/3);
                 littleOne.PVinit=(PVIun+PVIdeux)/2;
             } else {
                 littleOne.setBlue((int) (Math.random() * (100 - 10)) + 10);

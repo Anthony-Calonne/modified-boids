@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class OuvertureController implements Initializable {
+    @FXML private TextField nbCycles;
     @FXML private TextField nbProies;
     @FXML private TextField nbPredateurs;
     @FXML private Button TransmiCultu;
@@ -27,6 +28,7 @@ public class OuvertureController implements Initializable {
 
     int nombreProies =0;
     int nombrePredateurs=0;
+    int nombreCycles = 0;
 
 
     public void heredite() {
@@ -54,11 +56,18 @@ public class OuvertureController implements Initializable {
         public void demarrer(){
         String Proies = nbProies.getText();
         String Predateurs= nbPredateurs.getText();
+        String NbCycles = nbCycles.getText();
         try {
             nombreProies = Integer.parseInt(Proies);
             Stockage.nombreProies = nombreProies;
             nombrePredateurs= Integer.parseInt(Predateurs);
             Stockage.nombrePredateurs = nombrePredateurs;
+            nombreCycles = Integer.parseInt(NbCycles);
+            if (nombreCycles==0){
+                nombreCycles=1;
+            }
+            Stockage.nombreCyclesActualisation = nombreCycles;
+
         } catch (Exception f){
             textError.setText("Veuillez entrer des nombres entre 0 et 120");
             textError.setText("aa" + nombrePredateurs);
