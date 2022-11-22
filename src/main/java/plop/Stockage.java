@@ -5,6 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.chart.XYChart;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Stockage {
     public static boolean heredite = true;
@@ -45,7 +46,7 @@ public class Stockage {
     static int vitessePredateurs = 1;
 
     static GraphicsContext gc;
-
+    static Date debut;
     //partie Graphiques
     static XYChart.Series<String,Number> SerieEffectifProies = new XYChart.Series<String,Number>();
     static XYChart.Series<String,Number> SerieeffectifPredateurs = new XYChart.Series<String,Number>();
