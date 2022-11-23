@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="modified-boids:jar3" />
+      <artifact name="modified-boids:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,7 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2020a337-f710-46d8-a51f-a0674021aaaa" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/modified_boids_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/modified_boids_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/plop/OuvertureController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/OuvertureController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/plop/Stockage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/Stockage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/plop/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/plop/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plop/SceneOuverture.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plop/SceneOuverture.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -10,13 +10,15 @@
           <Button fx:id="demarrer" layoutX="231.0" layoutY="308.0" mnemonicParsing="false" onAction="#demarrer" text="Démarrer la simulation" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="220.0" />
           <TextField fx:id="nbProies" layoutX="242.0" layoutY="111.0" prefHeight="26.0" prefWidth="40.0" text="25" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="326.0" />
           <TextField fx:id="nbPredateurs" layoutX="242.0" layoutY="175.0" prefHeight="26.0" prefWidth="40.0" text="25" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="326.0" />
-          <Text layoutX="313.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proies" AnchorPane.rightAnchor="253.20273437499998" />
-          <Text layoutX="299.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prédateurs" AnchorPane.rightAnchor="242.66367187499998" />
+          <Text layoutX="413.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Proies (max 120)" AnchorPane.rightAnchor="199.630859375" />
+          <Text layoutX="400.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prédateurs (max 120)" AnchorPane.rightAnchor="188.091796875" />
       <Text fx:id="textError" layoutX="185.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="377.33673095703125" />
       <Button fx:id="graphiques" layoutX="603.0" layoutY="442.0" mnemonicParsing="false" onAction="#graphiques" text="Graphiques" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
       <Button fx:id="TransmiCultu" layoutX="225.0" layoutY="397.0" mnemonicParsing="false" onAction="#culture" prefHeight="26.0" prefWidth="250.0" text="Culture" AnchorPane.bottomAnchor="76.60000000000002" />
       <Button fx:id="Heredite" layoutX="225.0" layoutY="437.0" mnemonicParsing="false" onAction="#heredite" prefWidth="250.0" text="Hérédité" AnchorPane.bottomAnchor="37.39999999999998" />
       <TextField fx:id="nbCycles" layoutX="362.0" layoutY="237.0" prefHeight="26.0" prefWidth="77.0" text="20" />
       <Text layoutX="55.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de cycles entre 2 actualisations des graphiques" />
+      <TextField fx:id="txMutation" layoutX="225.0" layoutY="354.0" prefHeight="26.0" prefWidth="59.0" text="10" />
+      <Text layoutX="306.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Taux de mutation (/1000 reproductions)" />
       </children>
 </AnchorPane>

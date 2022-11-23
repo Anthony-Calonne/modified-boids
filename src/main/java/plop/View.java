@@ -319,6 +319,55 @@ public class View {
                 littleOne.rouge2dom= predateur.rouge2dom;
                 littleOne.rouge2 = predateur.rouge2;
             }
+            Stockage.nombreReproDepuisMutation++;
+            if (Stockage.txMutation!=0){
+                if (Stockage.nombreReproDepuisMutation>Stockage.txMutation){
+                    Stockage.nombreReproDepuisMutation=0;
+                    littleOne.rouge1 = (int) (Math.random()*255);
+                    littleOne.bleu1 = (int) (Math.random()*255);
+                    littleOne.rouge2 = (int) (Math.random()*255);
+                    littleOne.bleu2 = (int) (Math.random()*255);
+
+                    double B1 = Math.random();
+                    if (B1>0.5){
+                        littleOne.bleu1dom = true;
+                    }
+                    double B2 = Math.random();
+                    if (B2>0.5){
+                        littleOne.bleu2dom = true;
+                    }
+
+                    double R1 = Math.random();
+                    if (R1>0.5){
+                        littleOne.rouge1dom = true;
+                    }
+                    double R2 = Math.random();
+                    if (R2>0.5){
+                        littleOne.rouge2dom = true;
+                    }
+
+                    if(littleOne.bleu1dom){
+                        if (littleOne.bleu2dom){
+                            littleOne.blue = (littleOne.bleu1+littleOne.bleu2)/2;
+                        } else {
+                            littleOne.blue = littleOne.bleu1;
+                        }
+                    } else if (littleOne.bleu2dom){
+                        littleOne.blue = littleOne.bleu2;
+                    }
+
+
+                    if(littleOne.rouge1dom){
+                        if (littleOne.rouge2dom){
+                            littleOne.red = (littleOne.rouge1+littleOne.rouge2)/2;
+                        } else {
+                            littleOne.red = littleOne.rouge1;
+                        }
+                    } else if (littleOne.rouge2dom){
+                        littleOne.red = littleOne.rouge2;
+                    }
+                }
+            }
 
 
 
@@ -492,6 +541,56 @@ public class View {
                     littleOne.setGreen((int) (Math.random() * (255 - 90)) + 90);
                     littleOne.PVinit = (Math.random() * (2000 - 300)) + 300;
                 }
+                Stockage.nombreReproDepuisMutation++;
+                if (Stockage.txMutation!=0){
+                    if (Stockage.nombreReproDepuisMutation>Stockage.txMutation){
+                        Stockage.nombreReproDepuisMutation=0;
+                        littleOne.vert1 = (int) (Math.random()*255);
+                        littleOne.bleu1 = (int) (Math.random()*255);
+                        littleOne.vert2 = (int) (Math.random()*255);
+                        littleOne.bleu2 = (int) (Math.random()*255);
+
+                        double B1 = Math.random();
+                        if (B1>0.5){
+                            littleOne.bleu1dom = true;
+                        }
+                        double B2 = Math.random();
+                        if (B2>0.5){
+                            littleOne.bleu2dom = true;
+                        }
+
+                        double R1 = Math.random();
+                        if (R1>0.5){
+                            littleOne.vert1dom = true;
+                        }
+                        double R2 = Math.random();
+                        if (R2>0.5){
+                            littleOne.vert2dom = true;
+                        }
+
+                        if(littleOne.bleu1dom){
+                            if (littleOne.bleu2dom){
+                                littleOne.blue = (littleOne.bleu1+littleOne.bleu2)/2;
+                            } else {
+                                littleOne.blue = littleOne.bleu1;
+                            }
+                        } else if (littleOne.bleu2dom){
+                            littleOne.blue = littleOne.bleu2;
+                        }
+
+
+                        if(littleOne.vert1dom){
+                            if (littleOne.vert2dom){
+                                littleOne.green = (littleOne.vert1+littleOne.vert2)/2;
+                            } else {
+                                littleOne.green = littleOne.vert1;
+                            }
+                        } else if (littleOne.vert2dom){
+                            littleOne.green = littleOne.vert2;
+                        }
+                    }
+                }
+
                 double attaqueSup = (attaqueSupOne + attaqueSupTwo) / 2;
                 littleOne.attaquesSupportees = attaqueSup;
                 littleOne.attaquesSubies = 0;

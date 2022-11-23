@@ -18,6 +18,7 @@ public class OuvertureController implements Initializable {
     @FXML private TextField nbProies;
     @FXML private TextField nbPredateurs;
     @FXML private Button TransmiCultu;
+    @FXML private TextField txMutation;
     @FXML private Button Heredite;
     @FXML private Button demarrer;
     @FXML private Button graphiques;
@@ -29,6 +30,7 @@ public class OuvertureController implements Initializable {
     int nombreProies =0;
     int nombrePredateurs=0;
     int nombreCycles = 0;
+    int tauxMutation = 0;
 
 
     public void heredite() {
@@ -57,9 +59,16 @@ public class OuvertureController implements Initializable {
         String Proies = nbProies.getText();
         String Predateurs= nbPredateurs.getText();
         String NbCycles = nbCycles.getText();
+        String TxMutation = txMutation.getText();
         try {
             nombreProies = Integer.parseInt(Proies);
             Stockage.nombreProies = nombreProies;
+            tauxMutation = Integer.parseInt(TxMutation);
+            if (tauxMutation!=0){
+                Stockage.txMutation = 1000/tauxMutation;
+            } else {
+                Stockage.txMutation = 0;
+            }
             nombrePredateurs= Integer.parseInt(Predateurs);
             Stockage.nombrePredateurs = nombrePredateurs;
             nombreCycles = Integer.parseInt(NbCycles);

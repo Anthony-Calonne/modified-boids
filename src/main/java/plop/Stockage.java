@@ -25,6 +25,8 @@ public class Stockage {
     static FXMLLoader currentFxmlLoader = new FXMLLoader(main.class.getResource("SceneOuverture.fxml"));
     static int nombreProies;
     static int nombrePredateurs;
+    static int txMutation;
+    static int nombreReproDepuisMutation = 0;
     static double windowHeight;
     static double windowWidth;
     static double coherenceProies;
