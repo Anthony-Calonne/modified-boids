@@ -2,7 +2,15 @@ package plop;
 
 public class Predateur {
     int competiteurs=0;
+    int rouge1;
+    int rouge2;
+    boolean rouge1dom;
+    boolean rouge2dom;
 
+    int bleu1;
+    int bleu2;
+    boolean bleu1dom;
+    boolean bleu2dom;
     public boolean attaque=false;
     public double vitesse = 1;
     public int rangProieSuivie=-1;

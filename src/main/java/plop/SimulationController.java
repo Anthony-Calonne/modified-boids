@@ -76,12 +76,12 @@ public class SimulationController implements Initializable {
             gc.setFill(backGroundColor);
             gc.strokeRect(lateX-2,lateY-2,6,6);
             if (Stockage.traces){
-                gc.fillRect(lateX - 2, lateY - 2, 6, 6);
+                gc.fillRect(lateX - 2, lateY - 2, 7, 7);
             }
             gc.setFill(Color.rgb(0,green,blue));
             gc.setStroke(Color.rgb(0,green,blue));
-            gc.strokeRect(x,y,3,3);
-            gc.fillRect(x,y,3,3);
+            gc.strokeRect(x,y,4,4);
+            gc.fillRect(x,y,4,4);
         }
         for (int i=0; i<Stockage.predateurs.size();i++){
             Predateur temp = Stockage.predateurs.get(i);
@@ -98,7 +98,7 @@ public class SimulationController implements Initializable {
 
             gc.setStroke(backGroundColor);
             gc.setFill(backGroundColor);
-            gc.strokeRect(lateX-2,lateY-2,6,6);
+            gc.strokeOval(lateX-2,lateY-2,6,6);
             if (Stockage.traces){
                 gc.fillRect(lateX - 2, lateY - 2, 6, 6);
             }
@@ -106,7 +106,7 @@ public class SimulationController implements Initializable {
             gc.setFill(Color.rgb(red,50,blue));
             gc.setStroke(Color.rgb(red,50,blue));
             gc.fillRect(x,y,3,3);
-            gc.strokeRect(x,y,3,3);
+            gc.strokeOval(x,y,3,3);
         }
         }
 

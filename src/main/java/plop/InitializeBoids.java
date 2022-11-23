@@ -31,6 +31,52 @@ public class InitializeBoids {
 
             temp.green = (int) (Math.random() * (255 - 90)) + 90;
             temp.blue = (int) (Math.random() * (100 - 10)) + 10;
+
+            temp.vert1 = (int) (Math.random()*255);
+            temp.bleu1 = (int) (Math.random()*255);
+            temp.vert2 = (int) (Math.random()*255);
+            temp.bleu2 = (int) (Math.random()*255);
+
+            double B1 = Math.random();
+            if (B1>0.5){
+                temp.bleu1dom = true;
+            }
+            double B2 = Math.random();
+            if (B2>0.5){
+                temp.bleu2dom = true;
+            }
+
+            double R1 = Math.random();
+            if (R1>0.5){
+                temp.vert1dom = true;
+            }
+            double R2 = Math.random();
+            if (R2>0.5){
+                temp.vert2dom = true;
+            }
+
+            if(temp.bleu1dom){
+                if (temp.bleu2dom){
+                    temp.blue = (temp.bleu1+temp.bleu2)/2;
+                } else {
+                    temp.blue = temp.bleu1;
+                }
+            } else if (temp.bleu2dom){
+                temp.blue = temp.bleu2;
+            }
+
+
+            if(temp.vert1dom){
+                if (temp.vert2dom){
+                    temp.green = (temp.vert1+temp.vert2)/2;
+                } else {
+                    temp.green = temp.vert1;
+                }
+            } else if (temp.vert2dom){
+                temp.green = temp.vert2;
+            }
+
+
             temp.previousX=0;
             temp.previousY=0;
             temp.PVinit=(Math.random()*(2000-300))+300;
@@ -64,8 +110,50 @@ public class InitializeBoids {
             temp.previousX=0;
             temp.previousY=0;
             temp.nourriture = (int) (Math.random() * (4 - 3) + 3);
-            temp.red = (int) (Math.random() * (255 - 90) + 90);
-            temp.blue = (int) (Math.random() * (100 - 10)) + 10;
+
+            temp.rouge1 = (int) (Math.random()*255);
+            temp.bleu1 = (int) (Math.random()*255);
+            temp.rouge2 = (int) (Math.random()*255);
+            temp.bleu2 = (int) (Math.random()*255);
+
+            double B1 = Math.random();
+            if (B1>0.5){
+                temp.bleu1dom = true;
+            }
+            double B2 = Math.random();
+            if (B2>0.5){
+                temp.bleu2dom = true;
+            }
+
+            double R1 = Math.random();
+            if (R1>0.5){
+                temp.rouge1dom = true;
+            }
+            double R2 = Math.random();
+            if (R2>0.5){
+                temp.rouge2dom = true;
+            }
+
+            if(temp.bleu1dom){
+                if (temp.bleu2dom){
+                    temp.blue = (temp.bleu1+temp.bleu2)/2;
+                } else {
+                    temp.blue = temp.bleu1;
+                }
+            } else if (temp.bleu2dom){
+                temp.blue = temp.bleu2;
+            }
+
+
+            if(temp.rouge1dom){
+                if (temp.rouge2dom){
+                    temp.red = (temp.rouge1+temp.rouge2)/2;
+                } else {
+                    temp.red = temp.rouge1;
+                }
+            } else if (temp.rouge2dom){
+                temp.red = temp.rouge2;
+            }
 
             temp.probaAttaque= (int) (Math.random() * 2550);
             temp.endurance=temp.red*10;

@@ -283,11 +283,123 @@ public class View {
             littleOne.red=(temp.red+predateur.red+ (int) (Math.random() * (255 - 90) + 90))/3;
             littleOne.blue=(temp.blue+predateur.blue + (int) (Math.random() * (100 - 10)) + 10)/3;
             littleOne.PVinit=(temp.PVinit+predateur.PVinit)/2;
+
+            //calcul de l'hérédité mendélienne
+            //1
+            double P1 = Math.random();
+            if (P1>0.5){
+                littleOne.bleu1dom = temp.bleu1dom;
+                littleOne.bleu1=temp.bleu1;
+            }else {
+                littleOne.bleu1dom=temp.bleu2dom;
+                littleOne.bleu1=temp.bleu2;
+            }
+            double P2 = Math.random();
+            if (P2>0.5){
+                littleOne.bleu2dom = predateur.bleu1dom;
+                littleOne.bleu2 = predateur.bleu1;
+            } else{
+                littleOne.bleu2dom= predateur.bleu2dom;
+                littleOne.bleu2 = predateur.bleu2;
+            }
+
+            double P3 = Math.random();
+            if (P3>0.5){
+                littleOne.rouge1dom = temp.rouge1dom;
+                littleOne.rouge1=temp.rouge1;
+            }else {
+                littleOne.rouge1dom=temp.rouge2dom;
+                littleOne.rouge1=temp.rouge2;
+            }
+            double P4 = Math.random();
+            if (P4>0.5){
+                littleOne.rouge2dom = predateur.rouge1dom;
+                littleOne.rouge2 = predateur.rouge1;
+            } else{
+                littleOne.rouge2dom= predateur.rouge2dom;
+                littleOne.rouge2 = predateur.rouge2;
+            }
+
+
+
+
+            if(littleOne.bleu1dom){
+                if (littleOne.bleu2dom){
+                    littleOne.blue = (littleOne.bleu1+littleOne.bleu2)/2;
+                } else {
+                    littleOne.blue = littleOne.bleu1;
+                }
+            } else if (littleOne.bleu2dom){
+                littleOne.blue = littleOne.bleu2;
+            }
+
+
+            if(littleOne.rouge1dom){
+                if (littleOne.rouge2dom){
+                    littleOne.red = (littleOne.rouge1+littleOne.rouge2)/2;
+                } else {
+                    littleOne.red = littleOne.rouge1;
+                }
+            } else if (littleOne.rouge2dom){
+                littleOne.red = littleOne.rouge2;
+            }
+
         }else{
             littleOne.setRed((int) (Math.random() * (255 - 90) + 90));
             littleOne.setBlue( (int) (Math.random() * (100 - 10)) + 10);
             littleOne.PVinit=(Math.random()*(8000-300))+300;
 
+
+            temp.previousX=0;
+            temp.previousY=0;
+            temp.nourriture = (int) (Math.random() * (4 - 3) + 3);
+            temp.red = (int) (Math.random() * (255 - 90) + 90);
+            temp.blue = (int) (Math.random() * (100 - 10)) + 10;
+
+
+            temp.rouge1 = (int) (Math.random()*255);
+            temp.bleu1 = (int) (Math.random()*255);
+            temp.rouge2 = (int) (Math.random()*255);
+            temp.bleu2 = (int) (Math.random()*255);
+
+            double B1 = Math.random();
+            if (B1>0.5){
+                temp.bleu1dom = true;
+            }
+            double B2 = Math.random();
+            if (B2>0.5){
+                temp.bleu2dom = true;
+            }
+
+            double R1 = Math.random();
+            if (R1>0.5){
+                temp.rouge1dom = true;
+            }
+            double R2 = Math.random();
+            if (R2>0.5){
+                temp.rouge2dom = true;
+            }
+
+            if(temp.bleu1dom){
+                if (temp.bleu2dom){
+                    temp.blue = (temp.bleu1+temp.bleu2)/2;
+                } else {
+                    temp.blue = temp.bleu1;
+                }
+            } else if (temp.bleu2dom){
+                temp.blue = temp.bleu2;
+            }
+
+
+            if(temp.rouge1dom){
+                if (temp.rouge2dom){
+                    temp.red = (temp.rouge1+temp.rouge2)/2;
+                } else {
+                    temp.red = temp.rouge1;
+                }
+            } else if (temp.rouge2dom){
+                temp.red = temp.rouge2;
+            }
         }
 
         littleOne.probaAttaque= (int) (Math.random() * 2550);

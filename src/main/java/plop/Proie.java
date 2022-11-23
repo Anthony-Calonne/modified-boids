@@ -6,6 +6,14 @@ public class Proie {
     public int tempsDepuisRepro = 0;
     public Vec direction;
     public Vec localisation;
+    public int bleu1;
+    public int bleu2;
+    public int vert1;
+    public int vert2;
+    public boolean bleu1dom;
+    public boolean bleu2dom;
+    public boolean vert1dom;
+    public boolean vert2dom;
 
     public int blue;
     public int green;
