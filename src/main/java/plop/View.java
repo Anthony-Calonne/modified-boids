@@ -437,7 +437,7 @@ public class View {
                 }
             } else if (temp.bleu2dom){
                 temp.blue = temp.bleu2;
-            }
+            }  else {littleOne.blue = (littleOne.bleu1+littleOne.bleu2)/2;}
 
 
             if(temp.rouge1dom){
@@ -448,7 +448,7 @@ public class View {
                 }
             } else if (temp.rouge2dom){
                 temp.red = temp.rouge2;
-            }
+            }  else {littleOne.red = (littleOne.rouge1+littleOne.rouge2)/2;}
         }
 
         littleOne.probaAttaque= (int) (Math.random() * 2550);
@@ -576,7 +576,7 @@ public class View {
                             }
                         } else if (littleOne.bleu2dom){
                             littleOne.blue = littleOne.bleu2;
-                        }
+                        }  else {littleOne.blue = (littleOne.bleu1+littleOne.bleu2)/2;}
 
 
                         if(littleOne.vert1dom){
@@ -587,7 +587,7 @@ public class View {
                             }
                         } else if (littleOne.vert2dom){
                             littleOne.green = littleOne.vert2;
-                        }
+                        }  else {littleOne.green = (littleOne.vert1+littleOne.vert2)/2;}
                     }
                 }
 

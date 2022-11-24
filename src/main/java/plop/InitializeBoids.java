@@ -63,7 +63,7 @@ public class InitializeBoids {
                 }
             } else if (temp.bleu2dom){
                 temp.blue = temp.bleu2;
-            }
+            } else {temp.blue = (temp.bleu1+temp.bleu2)/2;}
 
 
             if(temp.vert1dom){
@@ -74,7 +74,7 @@ public class InitializeBoids {
                 }
             } else if (temp.vert2dom){
                 temp.green = temp.vert2;
-            }
+            } else {temp.green = (temp.vert1+temp.vert2)/2;}
 
 
             temp.previousX=0;
@@ -142,7 +142,7 @@ public class InitializeBoids {
                 }
             } else if (temp.bleu2dom){
                 temp.blue = temp.bleu2;
-            }
+            } else {temp.blue = (temp.bleu1+temp.bleu2)/2;}
 
 
             if(temp.rouge1dom){
@@ -153,7 +153,7 @@ public class InitializeBoids {
                 }
             } else if (temp.rouge2dom){
                 temp.red = temp.rouge2;
-            }
+            } else {temp.red = (temp.rouge1+temp.rouge2)/2;}
 
             temp.probaAttaque= (int) (Math.random() * 2550);
             temp.endurance=temp.red*10;
